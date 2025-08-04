@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="GAMIGN\Player.cpp">
+      <Filter>GAMIGN</Filter>
+    </ClCompile>
+    <ClCompile Include="GAMIGN\SpaceGame.cpp">
+      <Filter>GAMIGN</Filter>
+    </ClCompile>
+    <ClCompile Include="GAMIGN\Enemy.cpp">
+      <Filter>GAMIGN</Filter>
+    </ClCompile>
+    <ClCompile Include="GAMIGN\Rocket.cpp">
+      <Filter>GAMIGN</Filter>
+    </ClCompile>
+    <ClCompile Include="GAMIGN\gameData.cpp">
+      <Filter>GAMIGN</Filter>
+    </ClCompile>
+    <ClCompile Include="GAMIGN\Laser.cpp">
+      <Filter>GAMIGN</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GAMIGN">
+      <UniqueIdentifier>{50dffc52-6cf2-429a-950f-c3834ab5bf8a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GAMIGN\Enemy.h">
+      <Filter>GAMIGN</Filter>
+    </ClInclude>
+    <ClInclude Include="GAMIGN\Player.h">
+      <Filter>GAMIGN</Filter>
+    </ClInclude>
+    <ClInclude Include="GAMIGN\SpaceGame.h">
+      <Filter>GAMIGN</Filter>
+    </ClInclude>
+    <ClInclude Include="GAMIGN\Rocket.h">
+      <Filter>GAMIGN</Filter>
+    </ClInclude>
+    <ClInclude Include="GAMIGN\gamedata.h">
+      <Filter>GAMIGN</Filter>
+    </ClInclude>
+    <ClInclude Include="GAMIGN\Laser.h">
+      <Filter>GAMIGN</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
