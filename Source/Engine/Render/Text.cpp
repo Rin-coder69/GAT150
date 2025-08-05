@@ -1,4 +1,5 @@
 #include "Text.h"
+#include <SDL3_ttf/SDL_ttf.h>
 
 namespace gaia {
 	Text::~Text() {

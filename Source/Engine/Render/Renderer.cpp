@@ -1,6 +1,6 @@
 #include "Renderer.h"
-#include <iostream>
-#include <SDL3/SDL.h>
+#include "Texture.h"
+#include <SDL3_ttf/SDL_ttf.h>
 
 namespace gaia
 {
@@ -58,6 +58,11 @@ namespace gaia
     {
         SDL_SetRenderDrawColor(renderer, r, g, b, a);
     };*/
+
+    SDL_Renderer* Renderer::GetSDLRenderer()
+    {
+        return renderer;
+	}
     void Renderer::SetColor(float r, float g, float b, float a)
     {
         SDL_SetRenderDrawColorFloat(renderer, r, g, b, a);
@@ -78,6 +83,20 @@ namespace gaia
         SDL_RenderLine(renderer, x1, y1, x2, y2);
     };
 
+    void Renderer::DrawTexture(Texture* texture, float x, float y, float angle)
+    {
+		vec2 size = texture->GetSize();
+
+            SDL_FRect destRect;
+        destRect.x = x;
+        destRect.y = y;
+        destRect.w = size.x;
+        destRect.h = size.y;
+
+        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_RenderTexture(renderer, texture->m_texture, NULL, &destRect);
+    }
+    
     void  Renderer:: ShutDown() {
 		TTF_Quit();
         SDL_DestroyRenderer(renderer);

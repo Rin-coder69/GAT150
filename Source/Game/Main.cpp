@@ -22,6 +22,7 @@
 #include <sstream>
 #include <fmod.hpp>
 #include <memory>
+#include "../Engine/Render/Texture.h"
 
 int main(int argc, char* argv[]) {
 	//gaia::file::SetCurrentDirectory("Assets");
@@ -123,7 +124,9 @@ int main(int argc, char* argv[]) {
 	for (int i = 0; i < 100; i++) {
 		stars.push_back(gaia::vec2{ gaia::random::getReal() * 1200, gaia::random::getReal() * 1024 });
 	};
-
+	// create texture, using shared_ptr so texture can be shared
+	std::shared_ptr<gaia::Texture> texture = std::make_shared<gaia::Texture>();
+	texture->Load("Wilnas.png", gaia::GetEngine().GetRenderer());
 	while (!quit) {
 		while (SDL_PollEvent(&e)) {
 			if (e.type == SDL_EVENT_QUIT) {
@@ -147,6 +150,9 @@ int main(int argc, char* argv[]) {
 
 		//draw game
 		game->Draw(gaia::GetEngine().GetRenderer());
+
+		gaia::GetEngine().GetRenderer().DrawTexture(texture.get(), 30.0f, 30.0f, 0.0f);
+
 
 		// stars
 		gaia::vec2 speed{ -40.0f,0 };
