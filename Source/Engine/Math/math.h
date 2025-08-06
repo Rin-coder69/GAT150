@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <SDL3/SDL.h>
 #include <cmath>
+
 namespace gaia {
 	namespace math {
 		constexpr float PI = 3.14159265358979323846f;
@@ -57,5 +58,5 @@ namespace gaia {
 
 
 
-	};
+	}
 }

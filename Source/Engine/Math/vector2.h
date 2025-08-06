@@ -1,7 +1,8 @@
 #pragma once
-#include <cassert>
 #include "math.h"
+#include <cassert>
 #include <vector>
+
 namespace gaia {
 	template<typename T>
 	struct  Vector2 {

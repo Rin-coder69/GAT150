@@ -27,6 +27,9 @@
     <Filter Include="Source\Framework">
       <UniqueIdentifier>{fc020c6a-1a95-4a12-8c4e-033a0cd080c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Resources">
+      <UniqueIdentifier>{9616bec9-3142-4ef5-a08f-dc87dcaee66a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -44,7 +47,7 @@
     <ClCompile Include="Framework\Actor.cpp">
       <Filter>Source\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\game.cpp">
+    <ClCompile Include="Framework\Game.cpp">
       <Filter>Source\Framework</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Scene.cpp">
@@ -66,6 +69,9 @@
       <Filter>Source\Render</Filter>
     </ClCompile>
     <ClCompile Include="Render\Particlesystem.cpp">
+      <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Texture.cpp">
       <Filter>Source\Render</Filter>
     </ClCompile>
   </ItemGroup>
@@ -109,7 +115,7 @@
     <ClInclude Include="Framework\Actor.h">
       <Filter>Source\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\game.h">
+    <ClInclude Include="Framework\Game.h">
       <Filter>Source\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Render\Model.h">
@@ -125,6 +131,9 @@
       <Filter>Source\Render</Filter>
     </ClInclude>
     <ClInclude Include="Render\particlesystem.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Texture.h">
       <Filter>Source\Render</Filter>
     </ClInclude>
   </ItemGroup>

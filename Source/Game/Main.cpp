@@ -1,20 +1,21 @@
-#include "Math/Math.h"
 #include "Math/Vector3.h"
-#include "Render/Renderer.h"
+#include "Math/Math.h"
 #include "core/random.h"
 #include "core/Time.h"
 #include "Core/File.h"
+#include "Math/Transform.h"
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
 #include "Math/Vector2.h"
 #include "Framework/Actor.h"
-#include "Math/Transform.h"
-#include "Render/Model.h"
 #include "Framework/Scene.h"
 #include "GAMIGN/Player.h"
 #include "Engine.h"
 #include "GAMIGN/SpaceGame.h"
+#include "Render/Renderer.h"
+#include "Render/Model.h"
 #include "Render/Font.h"
+#include "Render/Texture.h"
 #include <SDL3/SDL.h>
 #include <vector>
 #include <iostream>
@@ -22,7 +23,6 @@
 #include <sstream>
 #include <fmod.hpp>
 #include <memory>
-#include "../Engine/Render/Texture.h"
 
 int main(int argc, char* argv[]) {
 	//gaia::file::SetCurrentDirectory("Assets");
