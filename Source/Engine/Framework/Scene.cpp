@@ -1,7 +1,8 @@
 #include "Scene.h"
-#include "Actor.h"
 #include "../Render/Renderer.h"
-#include "../Core/StringHelper.h"
+#include "../Components/ColliderComponents.h"
+#include "../Components/CircleCollider2d.h"
+
 namespace gaia {
 	/// <summary>
 	/// Updates all actors in the scene by advancing their state based on the elapsed time.
@@ -23,6 +24,16 @@ namespace gaia {
 		for (auto& actorA : m_actors) {
 			for (auto& actorB : m_actors) {
 				if (actorA == actorB || (actorA->destroyed || actorB->destroyed)) continue;
+
+
+				auto colliderA = actorA->GetComponent<ColliderComponent>();
+				auto colliderB = actorB->GetComponent<ColliderComponent>();
+
+				if (!colliderA || !colliderB) continue;
+				if (colliderA->CheckCollision(*colliderB)) {
+					actorA->OnCollision(actorB.get());
+					actorB->OnCollision(actorA.get());
+				}
 
 				float distance = (actorA->transform.position - actorB->transform.position).length();
 				if (distance <= actorA->GetRadius() + actorB->GetRadius()) {
@@ -56,5 +67,5 @@ namespace gaia {
 	{
 		m_actors.clear();
 	}
-
 }
+

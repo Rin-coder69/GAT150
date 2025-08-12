@@ -1,5 +1,5 @@
 #include "Text.h"
-#include <SDL3_ttf/SDL_ttf.h>
+#include "Font.h"
 
 namespace gaia {
 	Text::~Text() {

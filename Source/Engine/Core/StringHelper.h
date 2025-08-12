@@ -15,4 +15,11 @@ namespace gaia {
 		}
 		return lowerStr;
 	}
+	inline std::string toupper(const std::string& str) {
+		std::string upperStr = str;
+		for (char& c : upperStr) {
+			c = std::toupper(c);
+		}
+		return upperStr;
+	}
 }

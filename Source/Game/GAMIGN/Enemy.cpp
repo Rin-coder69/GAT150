@@ -1,15 +1,8 @@
 #include "Enemy.h"
-#include "Engine.h"
-#include "Framework/Scene.h"
-#include "Framework/game.h"
-#include "Render/Renderer.h"
 #include "Player.h"
-#include "math/vector3.h"
 #include "Rocket.h"
 #include "gamedata.h"
-#include "Render/Model.h"
-#include "Render/particlesystem.h"
-#include "Core/random.h"
+#include "../GamePCH.h"
 
 void Enemy::Update(float deltaTime)
 {
@@ -22,7 +15,12 @@ void Enemy::Update(float deltaTime)
 		transform.rotation = gaia::math::radToDeg(direction.Angle());
 	}
 	gaia::vec2 force = gaia::vec2{ 1,0 }.Rotate(gaia::math::degToRad(transform.rotation));
-	velocity += (force * speed) * deltaTime;
+	//velocity += (force * speed) * deltaTime;
+	auto rb = GetComponent<gaia::RigidBody>();
+	if (rb)
+	{
+		rb->velocity += force * dt;
+	}
 
 	transform.position.x = gaia::math::wrap(transform.position.x, 0.0f, (float)gaia::GetEngine().GetRenderer().GetWidth());
 	transform.position.y = gaia::math::wrap(transform.position.y, 0.0f, (float)gaia::GetEngine().GetRenderer().GetHeight());
@@ -31,13 +29,21 @@ void Enemy::Update(float deltaTime)
 	if (fireTimer <= 0) {
 		fireTimer = fireTime;
 
-		std::shared_ptr<gaia::Model> model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 0.0f,1.0f,0.0f });
+		//std::shared_ptr<gaia::Model> model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 0.0f,1.0f,0.0f });
 		gaia::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
-		auto rocket = std::make_unique<Rocket>(transform, model);
+		auto rocket = std::make_unique<Rocket>(transform); //gaia::Resources().Get<gaia::Texture>("textures/blue_01.png", gaia::GetEngine().GetRenderer()));
 		rocket->speed = 2.0f;
 		rocket->lifespan = 1.5f;
 		rocket->name = "enemy";
 		rocket->tag = "enemy";
+		//components
+		auto spriteRender = std::make_unique<gaia::SpriteRenderer>();
+		spriteRender->textureName = "textures/blue_01.png";
+		rocket -> AddComponent(std::move(spriteRender));
+
+		auto rb = std::make_unique<gaia::RigidBody>();
+	
+		player->AddComponent(std::move(rb));
 
 		scene->AddActor(std::move(rocket));
 	}

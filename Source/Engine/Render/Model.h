@@ -9,7 +9,7 @@ namespace gaia {
 	class Model{
 	public:
 		Model() = default;
-		Model(const std::vector<gaia::vec2>& points, const vec3& color):
+		Model(const std::vector<vec2>& points, const vec3& color):
 			points{points},
 			color{ color } {
 			CalculateRadius();
@@ -23,7 +23,7 @@ namespace gaia {
 
 	private:
 		float m_radius{ 0 };
-		std::vector<gaia::vec2> points;
+		std::vector<vec2> points;
 		vec3 color{ 1.0f, 1.0f, 1.0f }; // Default color white
-		};
+	};
 } 

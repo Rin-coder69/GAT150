@@ -78,6 +78,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>GamePCH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>GamePCH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -96,6 +99,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>GamePCH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>GamePCH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -112,6 +118,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>GamePCH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>GamePCH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +139,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>GamePCH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>GamePCH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,6 +151,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GamePCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GamePCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">GamePCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">GamePCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">GamePCH.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="GAMIGN\Enemy.cpp" />
     <ClCompile Include="GAMIGN\gameData.cpp" />
     <ClCompile Include="GAMIGN\Laser.cpp" />
@@ -156,6 +178,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GamePCH.h" />
     <ClInclude Include="GAMIGN\Enemy.h" />
     <ClInclude Include="GAMIGN\gamedata.h" />
     <ClInclude Include="GAMIGN\Laser.h" />

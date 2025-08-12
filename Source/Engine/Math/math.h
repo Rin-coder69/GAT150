@@ -33,6 +33,12 @@ namespace gaia {
 			return min + result;
 		}
 
+		template<typename T>
+		inline T sign(T v) {
+			return (v < 0) ? (T) - 1 : (v > 0) ? (T)1 : (T)0; // returns 1 for positive, -1 for negative, 0 for zero
+		}
+
+
 //Wrap function
 
 		inline float wrap(float value, float min, float max) {

@@ -1,11 +1,13 @@
 #pragma once
+
 #include "Renderer.h"
+#include "Resources/Resource.h"
 #include <iostream>
 #include <SDL3/SDL.h>
 struct TTF_Font;
 namespace gaia
 {
-	class Font {
+	class Font : public Resource {
 	public:
 		Font() = default;
 		~Font();

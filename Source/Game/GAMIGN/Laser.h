@@ -7,8 +7,8 @@ public:
 
 public:
 	Laser() = default;
-	Laser(const gaia::Transform& transform, std::shared_ptr<class gaia::Model> model) :
-		gaia::Actor{ transform, model }
+	Laser(const gaia::Transform& transform) :
+		gaia::Actor{transform}
 	{}
 	void Update(float deltaTime) override;
 	// Inherited via Actor

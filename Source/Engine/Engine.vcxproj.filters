@@ -30,6 +30,9 @@
     <Filter Include="Source\Resources">
       <UniqueIdentifier>{9616bec9-3142-4ef5-a08f-dc87dcaee66a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Components">
+      <UniqueIdentifier>{5fa2cfc2-41ef-44bb-97c6-c107d58c4eb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -68,11 +71,23 @@
     <ClCompile Include="Render\Model.cpp">
       <Filter>Source\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Render\Particlesystem.cpp">
+    <ClCompile Include="Render\ParticleSystem.cpp">
       <Filter>Source\Render</Filter>
     </ClCompile>
     <ClCompile Include="Render\Texture.cpp">
       <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="EnginePCH.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteRenderer.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RigidBody.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CircleCollider2d.cpp">
+      <Filter>Source\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,11 +145,50 @@
     <ClInclude Include="Render\Text.h">
       <Filter>Source\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Render\particlesystem.h">
+    <ClInclude Include="Render\ParticleSystem.h">
       <Filter>Source\Render</Filter>
     </ClInclude>
     <ClInclude Include="Render\Texture.h">
       <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\Resource.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\ResourceManager.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Singleton.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMinimal.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="EnginePCH.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Object.h">
+      <Filter>Source\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component.h">
+      <Filter>Source\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteRenderer.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RendererComponents.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Component.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RigidBody.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ColliderComponents.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CircleCollider2d.h">
+      <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

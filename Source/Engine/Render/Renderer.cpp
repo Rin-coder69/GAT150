@@ -83,7 +83,7 @@ namespace gaia
         SDL_RenderLine(renderer, x1, y1, x2, y2);
     };
 
-    void Renderer::DrawTexture(Texture* texture, float x, float y, float angle)
+    void Renderer::DrawTexture(Texture& texture, float x, float y)
     {
 		vec2 size = texture->GetSize();
 
@@ -93,8 +93,21 @@ namespace gaia
         destRect.w = size.x;
         destRect.h = size.y;
 
-        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTexture(renderer, texture->m_texture, NULL, &destRect);
+    }
+
+    void Renderer::DrawTexture(Texture* texture, float x, float y, float angle, float scale) {
+
+        vec2 size = texture->GetSize();
+
+        SDL_FRect destRect;
+        destRect.w = size.x * scale;
+        destRect.h = size.y * scale;
+        destRect.x = x - destRect.w * 0.5f;// Center the texture
+		destRect.y = y - destRect.h * 0.5f;// Center the texture
+       
+
+        SDL_RenderTextureRotated(renderer, texture.m_texture, NULL, &destRect, angle, NULL, SDL_FLIP_NONE);
     }
     
     void  Renderer:: ShutDown() {

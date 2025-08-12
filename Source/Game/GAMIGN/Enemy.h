@@ -9,8 +9,8 @@ public:
 	float fireTimer = 0;
 public:
 	Enemy() = default;
-	Enemy(const gaia::Transform& transform, std::shared_ptr<class gaia::Model> model) :
-		gaia::Actor{ transform, model }
+	Enemy(const gaia::Transform& transform):
+		Actor{ transform }
 	{}
 
 	void Update(float deltaTime) override;

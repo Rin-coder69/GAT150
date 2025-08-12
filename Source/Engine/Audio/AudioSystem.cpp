@@ -1,7 +1,4 @@
 #include "AudioSystem.h"
-#include "../core/StringHelper.h"
-#include <fmod_errors.h>
-#include <iostream>
 
 namespace gaia{
 	bool AudioSystem::CheckFMODRESULT(FMOD_RESULT result) {

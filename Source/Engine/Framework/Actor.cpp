@@ -1,6 +1,9 @@
 #include "Actor.h"
 #include "Render/Renderer.h"
 #include "../Render/Model.h"
+#include "Components/Component.h"
+#include "Components/RendererComponents.h"
+
 
 void gaia::Actor::Update(float deltaTime) {
 
@@ -10,18 +13,33 @@ void gaia::Actor::Update(float deltaTime) {
 		lifespan -= deltaTime;
 		destroyed = (lifespan <= 0);
 	}  
-	transform.position += velocity * deltaTime;
-	velocity *= (1.0f / 1.0f - damping * deltaTime);
 
+	for(auto& component : m_components) {
+		if (component->active)	component->Update(deltaTime);
+	}
+	
+	
 }
 
-void gaia::Actor::Draw(class Renderer& renderer) const {
-	if (m_model) {
-		m_model->draw(renderer, transform);
+void gaia:: Actor::Draw(Renderer& renderer) const {
+	if (destroyed) return;
+
+	//update all components that are active
+	for (auto& component : m_components) {
+		if (component->active) component-> Update(dt) {
+			;
+			}
+		}
 	}
 }
 
 float gaia::Actor::GetRadius()
 {
-	return (m_model) ? m_model->GetRadius() * transform.scale * 0.9f  : 0;
+	return (m_texture) ? m_texture->GetSize().length() * 0.5f * transform.scale * 0.9f : 0;
+}
+
+void gaia::Actor::AddComponent(std::unique_ptr<Component> component)
+{
+	component->owner = this;
+	m_components.push_back(std::move(component));
 }

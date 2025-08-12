@@ -20,6 +20,7 @@
     <ClCompile Include="GAMIGN\Laser.cpp">
       <Filter>GAMIGN</Filter>
     </ClCompile>
+    <ClCompile Include="GamePCH.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAMIGN">
@@ -28,9 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAMIGN\Enemy.h">
-      <Filter>GAMIGN</Filter>
-    </ClInclude>
-    <ClInclude Include="GAMIGN\Player.h">
       <Filter>GAMIGN</Filter>
     </ClInclude>
     <ClInclude Include="GAMIGN\SpaceGame.h">
@@ -45,5 +43,9 @@
     <ClInclude Include="GAMIGN\Laser.h">
       <Filter>GAMIGN</Filter>
     </ClInclude>
+    <ClInclude Include="GAMIGN\Player.h">
+      <Filter>GAMIGN</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePCH.h" />
   </ItemGroup>
 </Project>

@@ -13,8 +13,8 @@ public:
 	float fireTimer = 0.0f;
 public:
 	Player() = default;
-	Player(const gaia::Transform& transform, std::shared_ptr<class gaia::Model> model) :
-		gaia::Actor{ transform, model }
+	Player(const gaia::Transform& transform):
+		Actor{ transform }
 	{}
 
 	void Update(float deltaTime) override;

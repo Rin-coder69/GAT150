@@ -1,5 +1,12 @@
 #pragma once
 #include "core/Time.h"
+#include "Core/Singleton.h"
+#include "Render/Renderer.h"
+#include "Audio/AudioSystem.h"
+#include "Input/InputSystem.h"
+#include "Render/particlesystem.h"
+#include "Resources/ResourceManager.h"
+
 #include <memory>
 
 #define RENDERER gaia::GetEngine().GetRenderer()
@@ -10,10 +17,10 @@ namespace gaia {
 	class InputSystem;
 	class ParticleSystem;
 
-	class Engine {
+
+	class Engine : public Singleton<Engine>{
 
 	public:
-		Engine() = default;
 
 		bool Initialize();
 		void ShutDown();
@@ -29,6 +36,10 @@ namespace gaia {
 		Time& GetTime() { return time; }
 
 	private:
+		friend class Singleton<Engine>;
+		Engine() = default;
+
+	private:
 		Time time;
 		std::unique_ptr<Renderer> m_renderer;
 		std::unique_ptr<AudioSystem> m_audio;
@@ -36,6 +47,6 @@ namespace gaia {
 		std::unique_ptr<ParticleSystem> m_particleSystem;
 	};
 
-	Engine& GetEngine();
+	inline Engine& GetEngine() { return Engine::Instance(); }
 	//inline Renderer& GetRenderer() { return GetEngine().GetRenderer(); }
 }

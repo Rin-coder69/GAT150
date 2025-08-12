@@ -1,10 +1,12 @@
+#pragma once
+
 #include "Math/vector2.h"
 #include <string>
+#include "Resources/Resource.h"
 namespace gaia
 {
 
-	class Texture
-	{
+	class Texture : public Resource	{
 	public:
 		Texture() = default;
 		~Texture();

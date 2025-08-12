@@ -8,8 +8,8 @@ public:
 
 public:
 	Rocket() = default;
-	Rocket(const gaia::Transform& transform, std::shared_ptr<class gaia::Model> model) :
-		gaia::Actor{ transform, model }
+	Rocket(const gaia::Transform& transform/*, gaia::res_t<gaia::Texture> texture*/ ) :
+		gaia::Actor{transform}
 	{}
 	void Update(float deltaTime) override;
 	// Inherited via Actor

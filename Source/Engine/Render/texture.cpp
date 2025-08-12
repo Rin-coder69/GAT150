@@ -1,8 +1,6 @@
 #include "Texture.h"
 #include "Renderer.h"
-#include <cstring>
-#include <SDL3_image/SDL_image.h>
-
+#include "Engineminimal.h"
 namespace gaia
 {
 
@@ -35,9 +33,9 @@ namespace gaia
     }
     vec2 Texture::GetSize()
     {
-        // https://wiki.libsdl.org/SDL3/SDL_GetTextureSize
+        
 		float width, height;
 		SDL_GetTextureSize(m_texture, &width, &height);
-		return{ width, height };
+		return vec2{ width, height };
     }
 }

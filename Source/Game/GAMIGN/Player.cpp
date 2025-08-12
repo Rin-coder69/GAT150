@@ -1,18 +1,7 @@
 #include "Player.h"
 #include "Rocket.h"
-#include "Engine.h"
-#include "Input/InputSystem.h"
-#include "Framework/Scene.h"
-#include "Math/math.h"
-#include "Math/vector3.h"
-#include "Render/Model.h"
-#include "Render/Renderer.h"
 #include "gamedata.h"
 #include "SpaceGame.h"
-#include "gamedata.h"
-#include "Audio/AudioSystem.h"
-#include "Render/particlesystem.h"
-#include "Core/Random.h"
 #include "Laser.h"
 
 
@@ -45,7 +34,13 @@ void Player::Update(float deltaTime) {
     transform.rotation += (rotate * rotationspeed) * deltaTime;
     gaia::vec2 direction{ 1,0 };
     gaia::vec2 force = direction.Rotate(gaia::math::degToRad(transform.rotation)) * thrust * speed;
-    velocity += force * deltaTime;
+    //velocity += force * deltaTime;
+    auto rb = GetComponent<gaia::RigidBody>();
+    if (rb)
+    {
+        rb->velocity += force * dt;
+    }
+
 
 
     transform.position.x = gaia::math::wrap(transform.position.x, 0.0f, (float)gaia::GetEngine().GetRenderer().GetWidth());
@@ -63,12 +58,20 @@ void Player::Update(float deltaTime) {
         case WeaponType::Rocket:
             model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 1.0f, 1.4f, 1.0f });
             {
-                auto rocket = std::make_unique<Rocket>(transform, model);
+                auto rocket = std::make_unique<Rocket>(transform);
                 rocket->speed = 1500.0f;
                 rocket->lifespan = 1.5f;
                 rocket->damping = 1.5f;
                 rocket->name = "player";
                 rocket->tag = "player";
+				//components
+                auto spriteRender = std::make_unique<gaia::SpriteRenderer>();
+                spriteRender->textureName = "textures/blue_01.png";
+                rocket -> AddComponent(std::move(spriteRender));
+
+				auto rb = std::make_unique<gaia::RigidBody>();
+				rocket->AddComponent(std::move(rb));
+
                 scene->AddActor(std::move(rocket));
                 gaia::GetEngine().GetAudio().PlaySound("cowbell.wav");
             }
@@ -77,7 +80,7 @@ void Player::Update(float deltaTime) {
         case WeaponType::Laser:
             model = std::make_shared<gaia::Model>(GameData::enemyPoints, gaia::vec3{ 0.5f, 2.0f, 2.0f });
             {
-                auto laser = std::make_unique<Laser>(transform, model);
+                auto laser = std::make_unique<Laser>(transform);
                 laser->speed = 2000.0f;
                 laser->lifespan = 0.8f;
                 laser->damping = 1.0f;

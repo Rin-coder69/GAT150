@@ -5,10 +5,10 @@
 namespace gaia{
 	struct Particle {
 		bool active{ false };
-		vec2 position;
-		vec2 velocity;
-
-		vec3 color;
+		vec2 position{ 0,0 };
+		vec2 velocity{ 0,0 };
+		vec2 previousPosition{ 0,0 };// For motion blur effect
+		vec3 color{ 0,0,0 };
 
 		float lifespan{ 1.0f };
 	};

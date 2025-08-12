@@ -1,6 +1,5 @@
 #include "Font.h"
-#include "Renderer.h"
-#include <SDL3_ttf/SDL_ttf.h>
+
 using namespace gaia;
 
 

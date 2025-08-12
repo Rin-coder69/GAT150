@@ -9,11 +9,13 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "gamedata.h"
+#include "Resources/ResourceManager.h"
 #include "Render/particlesystem.h"
 #include "Audio/AudioSystem.h"
 #include "Rocket.h"
 #include <fmod.hpp>
 #include "Laser.h"
+#include "../GamePCH.h"
 
 
 #include <vector>
@@ -25,16 +27,18 @@ bool SpaceGame::Initialize()
 {
     m_scene = std::make_unique<gaia::Scene>(this);
 		// Initialize fonts
-	m_ttfFont = std::make_shared<gaia::Font>();
-	m_ttfFont->Load("ArcadeClassic.ttf", 128);
+	//m_ttfFont = std::make_shared<gaia::Font>();
+	//m_ttfFont->Load("ArcadeClassic.ttf", 128);
 
-	m_uiFont = std::make_shared<gaia::Font>();
-	m_uiFont->Load("ArcadeClassic.ttf", 48);
+	//m_uiFont = std::make_shared<gaia::Font>();
+	//m_uiFont->Load("ArcadeClassic.ttf", 48);
 
 
-	m_titleText = std::make_unique<gaia::Text>(m_ttfFont);
-	m_scoreText = std::make_unique<gaia::Text>(m_uiFont);
-	m_livesText = std::make_unique<gaia::Text>(m_uiFont);
+	m_scoreText = std::make_unique<gaia::Text>(gaia::Resources().GetWithID<gaia::Font>("ui_font","ArcadeClassic.ttf", 48.0f));
+	m_livesText = std::make_unique<gaia::Text>(gaia::Resources().GetWithID<gaia::Font>("ui_font", "ArcadeClassic.ttf", 48.0f));
+	m_titleText = std::make_unique<gaia::Text>(gaia::Resources().GetWithID<gaia::Font>("title_font", "ArcadeClassic.ttf", 128.0f));
+
+
 
     return true;
 }
@@ -73,12 +77,26 @@ void SpaceGame::Update(float dt)
 		m_scene->RemoveAllActors();
         std::shared_ptr<gaia::Model> model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 0.0f, 0.4f, 1.0f });
         gaia::Transform transform{ gaia::vec2{ gaia::GetEngine().GetRenderer().GetWidth() * 0.5f, gaia::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 15};
-        auto player = std::make_unique<Player>(transform, model);
+        auto player = std::make_unique<Player>(transform);
         player->speed = 1500.0f;
         player->rotationspeed = 180.0f;
-        player->damping = 1.5f;
+        //player->damping = 1.5f;
         player->name = "player";
         player->tag = "player";
+
+
+		//components
+		auto spriteRender = std::make_unique<gaia::SpriteRenderer>();
+		spriteRender->textureName = "textures/blue_01.png";
+		player->AddComponent(std::move(spriteRender));
+
+		auto rb = std::make_unique<gaia::RigidBody>();
+        rb -> damping = 1.5f;
+		player->AddComponent(std::move(rb));
+
+		auto collider = std::make_unique<gaia::CircleCollider2d>();
+        collider->radius = 60;
+		player->AddComponent(std::move(collider));
 
         m_scene->AddActor(std::move(player));
         m_gameState = GameState::Game;
@@ -92,13 +110,15 @@ void SpaceGame::Update(float dt)
             // create enemies
             std::shared_ptr<gaia::Model> enemyModel = std::make_shared<gaia::Model>(GameData::enemyPoints, gaia::vec3{1, 0, 0 });
             gaia::Transform transform{ gaia::vec2{ gaia::random::getReal() * gaia::GetEngine().GetRenderer().GetWidth() * 0.5f, gaia::random::getReal() * gaia::GetEngine().GetRenderer().GetHeight() }, 0, 10 };
-            std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, enemyModel);
+            std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform);
             enemy->fireTime = 3;
 			enemy->fireTimer = 5;
-            enemy->damping = 0.2f;
+            //enemy->damping = 0.2f;
             enemy->speed = (gaia::random::getReal()*200) + 300;//(gaia::random::getReal() * 800) + 500;
             enemy->tag = "enemy";
             m_scene->AddActor(std::move(enemy));
+
+
         }
         break;
 

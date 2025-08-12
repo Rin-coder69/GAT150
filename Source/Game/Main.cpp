@@ -1,12 +1,16 @@
 #include "Math/Vector3.h"
+#include "Math/vector2.h"
 #include "Math/Math.h"
 #include "core/random.h"
 #include "core/Time.h"
 #include "Core/File.h"
+#include "Core/Random.h"
+#include "Core/Singleton.h"
+#include "Resources/Resource.h"
+#include "Resources/ResourceManager.h"
 #include "Math/Transform.h"
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
-#include "Math/Vector2.h"
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
 #include "GAMIGN/Player.h"
@@ -111,13 +115,16 @@ int main(int argc, char* argv[]) {
 	
 	//text->Create(gaia::GetEngine().GetRenderer(), "Hello Gaia Engine!", gaia::vec3{ 1.0f, 1.0f, 1.0f });
 
-
+	
 
 	std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();
 	game->Initialize();
 
+	
+
 	SDL_Event e;
 	bool quit = false;
+	float rotate = 0;
 
 	//create stars
 	std::vector<gaia::vec2> stars;
@@ -125,8 +132,11 @@ int main(int argc, char* argv[]) {
 		stars.push_back(gaia::vec2{ gaia::random::getReal() * 1200, gaia::random::getReal() * 1024 });
 	};
 	// create texture, using shared_ptr so texture can be shared
-	std::shared_ptr<gaia::Texture> texture = std::make_shared<gaia::Texture>();
-	texture->Load("Wilnas.png", gaia::GetEngine().GetRenderer());
+	//std::shared_ptr<gaia::Texture> texture = std::make_shared<gaia::Texture>();
+	//texture->Load("Wilnas.png", gaia::GetEngine().GetRenderer());
+	
+	auto texture = gaia::Resources().Get<gaia::Texture>("Textures/blue_01.png", gaia::GetEngine().GetRenderer());
+
 	while (!quit) {
 		while (SDL_PollEvent(&e)) {
 			if (e.type == SDL_EVENT_QUIT) {
@@ -151,7 +161,8 @@ int main(int argc, char* argv[]) {
 		//draw game
 		game->Draw(gaia::GetEngine().GetRenderer());
 
-		gaia::GetEngine().GetRenderer().DrawTexture(texture.get(), 30.0f, 30.0f, 0.0f);
+		rotate += 90 * gaia::GetEngine().GetTime().GetDeltaTime();
+		gaia::GetEngine().GetRenderer().DrawTexture(texture.get(), 30.0f, 30.0f, rotate, 4.0f);
 
 
 		// stars
