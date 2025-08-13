@@ -6,6 +6,6 @@ namespace gaia {
 		void Update(float dt);
 
 		float radius{ 0.0f }; // Radius of the circle collider
-		bool CheckCollision(ColliderComponent& other);
+		bool CheckCollision(ColliderComponent& other) const override;
 	};
 }

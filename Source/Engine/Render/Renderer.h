@@ -30,7 +30,7 @@ namespace gaia
 			return m_height;
 		}
 		void DrawTexture(class Texture& texture, float x, float y);
-		void DrawTexture(class Texture& texture, float x, float y, float angle, float scale = 1.0f);
+		void DrawTexture(class Texture* texture, float x, float y, float angle, float scale = 1.0f);
 
 		void Clear();
 

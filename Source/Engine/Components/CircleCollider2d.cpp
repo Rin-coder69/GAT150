@@ -5,7 +5,7 @@ namespace gaia {
 		// Initialization logic for CircleCollider2d if needed
 	}
 
-	bool CircleCollider2d::CheckCollision(ColliderComponent& other) {
+	bool CircleCollider2d::CheckCollision(ColliderComponent& other) const {
 		float distance = (owner->transform.position - other.owner->transform.position).length();
 		//check circle to circle collision
 		auto circleCollider = dynamic_cast<CircleCollider2d*>(&other);

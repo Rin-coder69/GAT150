@@ -27,6 +27,10 @@ namespace gaia{
 	}
 
 	void Engine::ShutDown() {
+		//release resources from resource manager
+		Resources().Clear();
+
+		//shutdown engine systems
 		m_particleSystem->ShutDown();
 		m_audio->ShutDown();
 		m_renderer->ShutDown();

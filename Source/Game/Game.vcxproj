@@ -88,6 +88,9 @@
       <AdditionalDependencies>sdl3.lib;sdl3_image.lib;sdl3_ttf.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\$(PlatformTarget);$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <CustomBuildStep>
+      <Command>xcopy "$(TargetDir)" "$(SolutionDir)Build"</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -109,6 +112,9 @@
       <AdditionalDependencies>sdl3.lib;sdl3_image.lib;sdl3_ttf.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\$(PlatformTarget);$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <CustomBuildStep>
+      <Command>xcopy "$(TargetDir)" "$(SolutionDir)Build"</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -128,6 +134,9 @@
       <AdditionalDependencies>sdl3.lib;sdl3_image.lib;sdl3_ttf.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\$(PlatformTarget);$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <CustomBuildStep>
+      <Command>xcopy "$(TargetDir)" "$(SolutionDir)Build"</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -149,6 +158,9 @@
       <AdditionalDependencies>sdl3.lib;sdl3_image.lib;sdl3_ttf.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\$(PlatformTarget);$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <CustomBuildStep>
+      <Command>xcopy "$(TargetDir)" "$(SolutionDir)Build"</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GamePCH.cpp">
