@@ -15,6 +15,7 @@
 #include "Rocket.h"
 #include <fmod.hpp>
 #include "Laser.h"
+#include "Components/CircleCollider2d.h"
 #include "../GamePCH.h"
 
 

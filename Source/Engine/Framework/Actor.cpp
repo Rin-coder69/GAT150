@@ -21,18 +21,20 @@ void gaia::Actor::Update(float deltaTime) {
 	
 }
 
-void gaia:: Actor::Draw(Renderer& renderer) const {
+void gaia::Actor::Draw(Renderer& renderer) const {
 	if (destroyed) return;
 
 	//update all components that are active
 	for (auto& component : m_components) {
-		if (component->active) component-> Update(dt) {
-			;
+		if (component->active) {
+			auto rendererComponent = dynamic_cast<RendererComponent*>(component.get());
+			if (rendererComponent) {
+				rendererComponent->Draw(renderer);
 			}
+
 		}
 	}
 }
-
 float gaia::Actor::GetRadius()
 {
 	return (m_texture) ? m_texture->GetSize().length() * 0.5f * transform.scale * 0.9f : 0;

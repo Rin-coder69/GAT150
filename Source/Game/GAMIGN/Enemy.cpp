@@ -19,7 +19,7 @@ void Enemy::Update(float deltaTime)
 	auto rb = GetComponent<gaia::RigidBody>();
 	if (rb)
 	{
-		rb->velocity += force * dt;
+		rb->velocity += force * deltaTime;
 	}
 
 	transform.position.x = gaia::math::wrap(transform.position.x, 0.0f, (float)gaia::GetEngine().GetRenderer().GetWidth());

@@ -169,9 +169,6 @@
     <ClInclude Include="Framework\Object.h">
       <Filter>Source\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Component.h">
-      <Filter>Source\Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Components\SpriteRenderer.h">
       <Filter>Source\Components</Filter>
     </ClInclude>

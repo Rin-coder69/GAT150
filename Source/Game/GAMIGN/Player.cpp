@@ -3,6 +3,7 @@
 #include "gamedata.h"
 #include "SpaceGame.h"
 #include "Laser.h"
+#include "../GamePCH.h"
 
 
 void Player::Update(float deltaTime) {
@@ -38,7 +39,7 @@ void Player::Update(float deltaTime) {
     auto rb = GetComponent<gaia::RigidBody>();
     if (rb)
     {
-        rb->velocity += force * dt;
+		rb->velocity += force * deltaTime;
     }
 
 
@@ -61,7 +62,7 @@ void Player::Update(float deltaTime) {
                 auto rocket = std::make_unique<Rocket>(transform);
                 rocket->speed = 1500.0f;
                 rocket->lifespan = 1.5f;
-                rocket->damping = 1.5f;
+               
                 rocket->name = "player";
                 rocket->tag = "player";
 				//components
@@ -83,9 +84,14 @@ void Player::Update(float deltaTime) {
                 auto laser = std::make_unique<Laser>(transform);
                 laser->speed = 2000.0f;
                 laser->lifespan = 0.8f;
-                laser->damping = 1.0f;
+      
                 laser->name = "laser";
                 laser->tag = "player";
+
+				//components
+				auto spriteRender = std::make_unique<gaia::SpriteRenderer>();
+				spriteRender->textureName = "textures/laser.png";
+				laser->AddComponent(std::move(spriteRender));
                 scene->AddActor(std::move(laser));
                 gaia::GetEngine().GetAudio().PlaySound("Laser.wav"); // add a laser sound too
             }

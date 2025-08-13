@@ -8,13 +8,17 @@
 #include "Math/math.h"
 #include "Math/vector2.h"
 #include "Core/Random.h"
-
+#include "../GamePCH.h"
 
 
 void Laser::Update(float dt)
 {
 	gaia::vec2 force = gaia::vec2{ 1,0 }.Rotate(gaia::math::degToRad(transform.rotation));
-	velocity += (force * speed) * dt;
+	auto rb = GetComponent<gaia::RigidBody>();
+	if (rb)
+	{
+		rb->velocity += force;
+	}
 
 	transform.position.x = gaia::math::wrap(transform.position.x, 0.0f, (float)gaia::GetEngine().GetRenderer().GetWidth());
 	transform.position.y = gaia::math::wrap(transform.position.y, 0.0f, (float)gaia::GetEngine().GetRenderer().GetHeight());

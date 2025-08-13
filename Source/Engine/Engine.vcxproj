@@ -204,7 +204,6 @@
     <ClInclude Include="EngineMinimal.h" />
     <ClInclude Include="EnginePCH.h" />
     <ClInclude Include="Framework\Actor.h" />
-    <ClInclude Include="Framework\Component.h" />
     <ClInclude Include="Framework\Game.h" />
     <ClInclude Include="Framework\Object.h" />
     <ClInclude Include="Framework\Scene.h" />
