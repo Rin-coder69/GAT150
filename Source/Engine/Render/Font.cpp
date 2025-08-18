@@ -1,4 +1,5 @@
 #include "Font.h"
+#include "Core/Logger.h"
 
 using namespace gaia;
 
@@ -12,8 +13,8 @@ using namespace gaia;
 	bool Font::Load(const std::string& name, float fontSize) {
 		m_ttfFont = TTF_OpenFont(name.c_str(), fontSize);
 		if (m_ttfFont == nullptr){
-			std::cerr << SDL_GetError() << std::endl;
-			std::cerr << "Could not load font: " << name << std::endl;
+			Logger::Error("SDL_GetError : {}", SDL_GetError());
+			Logger::Warning("Could not load font {}", name);
 			return false;
 		}
 

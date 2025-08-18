@@ -1,0 +1,42 @@
+#include "Texture.h"
+#include "Renderer.h"
+#include "Engineminimal.h"
+#include "Core/Logger.h"
+namespace gaia
+{
+
+
+    Texture::~Texture()
+    {
+        // if texture exists, destroy texture
+        if (!m_texture) SDL_DestroyTexture(m_texture);
+    }
+
+    bool Texture::Load(const std::string& filename, Renderer& renderer)
+    {
+		
+        // load image onto surface
+        SDL_Surface* surface = IMG_Load(filename.c_str());
+        if (!surface)
+        {
+            Logger::Debug("Could not load image {}",  filename);
+            return false;
+        }
+        // create texture from surface, texture is a friend class of renderer
+        m_texture =  static_cast<SDL_Texture*>(SDL_CreateTextureFromSurface (renderer.renderer, surface));
+        SDL_DestroySurface(surface);
+        if (!m_texture)
+        {
+            Logger::Debug("Could not create texture {}", filename);
+            return false;
+        }
+        return true;
+    }
+    vec2 Texture::GetSize()
+    {
+        
+		float width, height;
+		SDL_GetTextureSize(m_texture, &width, &height);
+		return vec2{ width, height };
+    }
+}

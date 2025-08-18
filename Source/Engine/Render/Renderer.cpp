@@ -1,17 +1,18 @@
 #include "Renderer.h"
 #include "Texture.h"
 #include <SDL3_ttf/SDL_ttf.h>
+#include "Core/Logger.h"    
 
 namespace gaia
 {
 
     bool Renderer::Initialize() {
         if (!SDL_Init(SDL_INIT_VIDEO)) {
-            std::cerr << "SDL_Init Error: " << SDL_GetError() << std::endl;
+            Logger::Error("SDL_Init Error : {}", SDL_GetError());
             return false;
         }
         if(!TTF_Init()) {
-            std::cerr << "TTF_Init Error: " << SDL_GetError() << std::endl;
+           Logger::Error("TTF_Init Error {}", SDL_GetError());
             return false;
 		}
 
@@ -28,7 +29,9 @@ namespace gaia
     }
 
 
-
+    bool CreateWindow(const std::string& name, int width, int height, bool fullscreen){
+        return true;
+    }
 
 
     bool Renderer::CreateWindow(const std::string& name, int width, int height)    {
@@ -36,7 +39,7 @@ namespace gaia
 		m_width = width;
 		m_height = height;
     if (window == nullptr) {
-        std::cerr << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
+        Logger::Error("SDL_CreateWindow Error {} ",SDL_GetError());
         SDL_Quit();
         return false;
     
@@ -44,7 +47,7 @@ namespace gaia
 
     renderer = SDL_CreateRenderer(window, NULL);
     if (renderer == nullptr) {
-        std::cerr << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+        Logger::Error("SDL_CreateRenderer Error {}",SDL_GetError());
         SDL_DestroyWindow(window);
         SDL_Quit();
         return false;
@@ -118,5 +121,6 @@ namespace gaia
         SDL_DestroyWindow(window);
         SDL_Quit();
     }
-  
+
+   
 }

@@ -78,6 +78,7 @@ void SpaceGame::Update(float dt)
 		m_scene->RemoveAllActors();
         std::shared_ptr<gaia::Model> model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 0.0f, 0.4f, 1.0f });
         gaia::Transform transform{ gaia::vec2{ gaia::GetEngine().GetRenderer().GetWidth() * 0.5f, gaia::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 15};
+		// Create the player actor
         auto player = std::make_unique<Player>(transform);
         player->speed = 1500.0f;
         player->rotationspeed = 180.0f;

@@ -1,9 +1,11 @@
 #include "AudioSystem.h"
+#include "Audio/AudioClip.h"
+#include "Core/Logger.h"
 
 namespace gaia{
 	bool AudioSystem::CheckFMODRESULT(FMOD_RESULT result) {
 		if (result != FMOD_OK) {
-			std::cerr << "FMOD Error: " << FMOD_ErrorString(result) << std::endl;
+			Logger::Error("FMOD ERROR {}", FMOD_ErrorString(result));
 			return false; // Error occurred
 		}
 		return true; // No error
@@ -34,7 +36,7 @@ namespace gaia{
 		//check if key exists in sounds map
 		if(m_sounds.find(key) != m_sounds.end()) {
 			// Sound with this name already exists
-			std::cerr << "Audio System : name already exists " << key << std::endl;
+			Logger::Warning("AudioSystem: name already exists {}", key);
 			return false;
 		}
 		FMOD::Sound* sound = nullptr;
@@ -51,13 +53,19 @@ namespace gaia{
 		key = gaia::tolower(key); // Convert to uppercase for case-insensitive comparison
 
 		if(m_sounds.find(key) == m_sounds.end()) {
-			std::cerr << "Audio System : Sound not found " << name << std::endl;
+			Logger::Warning("AudoSystem : Sound not Found {}", name);
 			return false; // Sound not found
 		}
 		FMOD_RESULT result = m_system->playSound(m_sounds[key], nullptr, false, nullptr);
 		if (!CheckFMODRESULT(result) == false) return false;
 
 		return true;
+	}
+
+	bool AudioSystem::PlaySound(AudioClip& audioClip) {
+		FMOD_RESULT result = m_system->playSound(audioClip.m_sound, 0, false, nullptr);
+		if (!CheckFMODRESULT(result) == false) return false;
+		return true; // Sound played successfully
 	}
 
 

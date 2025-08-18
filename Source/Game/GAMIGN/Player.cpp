@@ -3,6 +3,7 @@
 #include "gamedata.h"
 #include "SpaceGame.h"
 #include "Laser.h"
+#include "Audio/AudioClip.h"
 #include "../GamePCH.h"
 
 
@@ -52,6 +53,7 @@ void Player::Update(float deltaTime) {
     fireTimer -= deltaTime;
     if (gaia::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_SPACE) && fireTimer <= 0) {
         fireTimer = fireTime;
+		gaia::GetEngine().GetAudio().PlaySound(*gaia::Resources().Get<gaia::AudioClip>("cowbell.wav", gaia::GetEngine().GetAudio()));
         gaia::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
         std::shared_ptr<gaia::Model> model;
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/StringHelper.h"
 #include "Core/Singleton.h"
+#include "Core/Logger.h"
 #include "Resource.h"
 #include <string>
 #include <map>
@@ -54,7 +55,7 @@ namespace gaia {
 			auto resource = std::dynamic_pointer_cast<T>(base);
 			// check if cast was successful
 			if (resource == nullptr) {
-				std::cerr << "Resource type mismatch: " << key << std::endl;
+				Logger::Debug("Resource type mismatch {} " , key);
 				return res_t<T>();
 			}
 
@@ -65,7 +66,7 @@ namespace gaia {
 		// load resource
 		res_t<T> resource = std::make_shared<T>();
 		if (resource->Load(name, std::forward<Args>(args)...) == false) {
-			std::cerr << "Could not load resource: " << name << std::endl;
+			Logger::Debug("Could not load resource {}",name);
 			return res_t<T>();
 		}
 

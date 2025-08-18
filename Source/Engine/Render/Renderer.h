@@ -18,6 +18,8 @@ namespace gaia
 
 		void ShutDown();
 
+		bool CreateWindow(const std::string& name, int width, int height, bool fullscreen);
+
 		SDL_Renderer* GetSDLRenderer();
 
 		bool CreateWindow(const std::string& name, int width, int height);
