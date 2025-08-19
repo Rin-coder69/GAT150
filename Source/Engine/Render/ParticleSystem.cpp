@@ -46,7 +46,7 @@ namespace gaia {
 			pParticle->color = particle.color;
 		}
 		else {
-			Logger::Warning("no free particles available {}"); 
+			Logger::Warning("no free particles available "); 
 		}
 	}
 

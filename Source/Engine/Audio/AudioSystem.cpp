@@ -53,7 +53,7 @@ namespace gaia{
 		key = gaia::tolower(key); // Convert to uppercase for case-insensitive comparison
 
 		if(m_sounds.find(key) == m_sounds.end()) {
-			Logger::Warning("AudoSystem : Sound not Found {}", name);
+			Logger::Warning("AudioSystem : Sound not Found {}", name);
 			return false; // Sound not found
 		}
 		FMOD_RESULT result = m_system->playSound(m_sounds[key], nullptr, false, nullptr);

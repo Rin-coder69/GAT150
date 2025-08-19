@@ -29,7 +29,7 @@
 #include <memory>
 
 int main(int argc, char* argv[]) {
-	//gaia::file::SetCurrentDirectory("Assets");
+	gaia::file::SetCurrentDirectory("Assets");
 
 	 // Test getInt() variants
 	std::cout << "Integer Functions:\n";

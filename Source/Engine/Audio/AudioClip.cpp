@@ -12,7 +12,7 @@ namespace gaia
     bool gaia::AudioClip::Load(const std::string& filename, AudioSystem& audioSystem)
     {
         FMOD_RESULT result = audioSystem.m_system->createSound(filename.c_str(), FMOD_DEFAULT, 0, &m_sound);
-        if (!AudioSystem::CheckFMODRESULT(result) == false) return false;
-        return false;
+        if (!AudioSystem::CheckFMODRESULT(result)) return false;
+        return true;
     }
 }

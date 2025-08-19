@@ -1,6 +1,7 @@
 #include "Texture.h"
 #include "Renderer.h"
 #include "Engineminimal.h"
+#include "Core/Logger.h"
 namespace gaia
 {
 
@@ -18,7 +19,7 @@ namespace gaia
         SDL_Surface* surface = IMG_Load(filename.c_str());
         if (!surface)
         {
-            std::cerr << "Could not load image: " << filename << std::endl;
+            Logger::Debug("Could not load image {}",  filename);
             return false;
         }
         // create texture from surface, texture is a friend class of renderer
@@ -26,7 +27,7 @@ namespace gaia
         SDL_DestroySurface(surface);
         if (!m_texture)
         {
-            std::cerr << "Could not create texture: " << filename << std::endl;
+            Logger::Debug("Could not create texture {}", filename);
             return false;
         }
         return true;

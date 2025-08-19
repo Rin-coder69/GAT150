@@ -23,9 +23,9 @@ namespace gaia {
 	}
 
 	// need to cast LogLevel a and b to uint8_t to perform & (and) operation, then cast back to LogLevel
-	inline LogLevel operator|(LogLevel a, LogLevel b) {
+	inline LogLevel operator & (LogLevel a, LogLevel b) {
 		return static_cast<LogLevel>(
-			static_cast<uint8_t>(a) | static_cast<uint8_t>(b)
+			static_cast<uint8_t>(a) & static_cast<uint8_t>(b)
 			);
 	}
 
@@ -83,13 +83,13 @@ namespace gaia {
 
 		template<typename... Args>
 		static void Warning(std::format_string<Args...> fmt, Args&&... args) {
-			<call Log() with warning level and std::format with args>
+			Log(LogLevel::Warning, std::format(fmt, std::forward<Args>(args)...)); 
 		}
 
 		template<typename... Args>
 		static void Debug(std::format_string<Args...> fmt, Args&&... args) {
-			<call Log() with debug level and std::format with args>
-		}
+			Log(LogLevel::Debug, std::format(fmt, std::forward<Args>(args)...)); 
+		};
 
 	private:
 		inline static LogLevel s_enabledLevels = LogLevel::All;

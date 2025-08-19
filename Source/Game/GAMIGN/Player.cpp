@@ -76,7 +76,7 @@ void Player::Update(float deltaTime) {
 				rocket->AddComponent(std::move(rb));
 
                 scene->AddActor(std::move(rocket));
-                gaia::GetEngine().GetAudio().PlaySound("cowbell.wav");
+                gaia::GetEngine().GetAudio().PlaySound(*gaia::Resources().Get<gaia::AudioClip>("cowbell.wav", gaia::GetEngine().GetAudio()));
             }
             break;
 

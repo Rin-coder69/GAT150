@@ -72,12 +72,12 @@ void SpaceGame::Update(float dt)
         void* extradriverdata = nullptr;
         audio->init(32, FMOD_INIT_NORMAL, extradriverdata);
         FMOD::Sound* sound = nullptr;
-		audio->createSound("8bit.wav",FMOD_DEFAULT,0, &sound);
+		audio->createSound("wilnas.wav",FMOD_DEFAULT,0, &sound);
 		audio->playSound(sound, nullptr, false, nullptr);
 		audio->update();
 		m_scene->RemoveAllActors();
         std::shared_ptr<gaia::Model> model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 0.0f, 0.4f, 1.0f });
-        gaia::Transform transform{ gaia::vec2{ gaia::GetEngine().GetRenderer().GetWidth() * 0.5f, gaia::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 15};
+        gaia::Transform transform{ gaia::vec2{ gaia::GetEngine().GetRenderer().GetWidth() * 0.5f, gaia::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 0.5};
 		// Create the player actor
         auto player = std::make_unique<Player>(transform);
         player->speed = 1500.0f;
@@ -89,11 +89,11 @@ void SpaceGame::Update(float dt)
 
 		//components
 		auto spriteRender = std::make_unique<gaia::SpriteRenderer>();
-		spriteRender->textureName = "textures/blue_01.png";
+		spriteRender->textureName = "textures/Wilnas.png";
 		player->AddComponent(std::move(spriteRender));
 
 		auto rb = std::make_unique<gaia::RigidBody>();
-        rb -> damping = 1.5f;
+        rb -> damping = 3.0f;
 		player->AddComponent(std::move(rb));
 
 		auto collider = std::make_unique<gaia::CircleCollider2d>();
@@ -177,7 +177,7 @@ void SpaceGame::Update(float dt)
         m_livesText->Create(renderer, "LIVES: " + std::to_string(m_lives), gaia::vec3{1, 1, 1});
         m_livesText->Draw(renderer,(float)(renderer.GetWidth()-200), (float)20);
 		
-        m_scene->Draw(renderer);
+        //m_scene->Draw(renderer);
 		gaia::GetEngine().GetParticleSystem().Draw(renderer);
     }
 
@@ -189,7 +189,7 @@ void SpaceGame::Update(float dt)
 
     void SpaceGame::ShutDown()
     {
-        //
+        m_scene->RemoveAllActors();
     }
 
     
