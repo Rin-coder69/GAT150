@@ -1,5 +1,6 @@
 #include "particlesystem.h"
 #include "Renderer.h"
+#include "Core/Logger.h"
 
 namespace gaia {
 	bool ParticleSystem::Initialize(int poolSize) {
@@ -45,7 +46,7 @@ namespace gaia {
 			pParticle->color = particle.color;
 		}
 		else {
-			std::cerr << "No free particles available!" << std::endl;
+			Logger::Warning("no free particles available "); 
 		}
 	}
 

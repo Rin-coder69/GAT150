@@ -7,6 +7,7 @@
 #include "Core/Time.h"
 #include "Core/Singleton.h"	
 #include "Core/StringHelper.h"
+#include "Core/Json.h"
 //
 //Framework
 #include "Framework/Object.h"

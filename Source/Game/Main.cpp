@@ -30,6 +30,46 @@
 
 int main(int argc, char* argv[]) {
 	gaia::file::SetCurrentDirectory("Assets");
+	// load the json data from a file
+	std::string buffer;
+	gaia::file::ReadTextFile("json.txt", buffer);
+	// show the contents of the json file (debug)
+	std::cout << buffer << std::endl;
+
+	// create json document from the json file contents
+	rapidjson::Document document;
+	gaia::json::Load("json.txt", document);
+
+	// read the age data from the json
+	int age;
+	gaia::json::Read(document, "age", age);
+	// show the age data
+	std::cout << age << std::endl;
+	gaia::Logger::Info("Current Directory {}", gaia::file::GetCurrentDirectory());
+
+	// read/show the data from the json file
+	std::string name;
+	//int age;
+	float speed;
+	bool isAwake;
+	gaia::vec2 position;
+	gaia::vec3 color;
+
+	// read the json data
+	JSON_READ(document, name);
+	JSON_READ(document, age);
+	JSON_READ(document, speed);
+	JSON_READ(document, color);
+	JSON_READ(document, isAwake);
+	JSON_READ(document, position);
+
+	// show the data
+	std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
+	std::cout << position.x << " " << position.y << std::endl;
+	std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
+
+
+	
 
 	 // Test getInt() variants
 	std::cout << "Integer Functions:\n";
@@ -106,8 +146,8 @@ int main(int argc, char* argv[]) {
 		std::cout << "Failed to read test.txt\n";
 	}
 	*/
-	gaia::file::SetCurrentDirectory("Assets");
-
+	//gaia::file::SetCurrentDirectory("Assets");
+	gaia::Logger::Warning("Initializing Engine...");
 	gaia::GetEngine().Initialize();
 	/*gaia::Font* font = new gaia::Font();
 	font->Load("ArcadeClassic.ttf", 20);*/
