@@ -2,6 +2,7 @@
 #include "math.h"
 #include <cassert>
 #include <vector>
+#include <iostream>
 
 namespace gaia {
 	template<typename T>
@@ -66,6 +67,12 @@ namespace gaia {
 			return v;
 		}
 	};
+	template<typename T>
+	std::ostream& operator << (std::ostream& stream, Vector2<T>& v) {
+		stream << "{" << v.x << "," << v.y "}";
+
+		return stream;
+	}
 
 	using ivec2 = Vector2<int>;
 	using vec2 = Vector2<float>;

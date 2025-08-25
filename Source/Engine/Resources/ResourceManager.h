@@ -12,7 +12,7 @@ namespace gaia {
 	public:
 		void Clear() { m_resources.clear(); }
 
-		template<typename T, typename ... Args>
+		template<typename T, typename ... Args>//Factory video 43:26
 		res_t<T> Get(const std::string& name, Args&& ... args);
 
 		template<typename T, typename ... Args>

@@ -3,6 +3,8 @@
 #include "SpriteRenderer.h"
 
 namespace gaia {
+	FACTORY_REGISTER(SpriteRenderer)
+
 	void SpriteRenderer::Draw(Renderer& renderer) {
 		auto texture = Resources().Get<Texture>(textureName, renderer);
 			renderer.DrawTexture(texture.get(),

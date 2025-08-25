@@ -28,7 +28,20 @@
 #include <fmod.hpp>
 #include <memory>
 
+#define FACTORY_REGISTER(classname)\
+class Register##classname{\
+public:\
+	Register##classname() {\
+		gaia::Factory::Instance().Register<classname>(#classname);\
+	}\
+};\
+Register##classname register_instance;
+
+
+
 int main(int argc, char* argv[]) {
+
+
 	gaia::file::SetCurrentDirectory("Assets");
 	// load the json data from a file
 	std::string buffer;
@@ -147,6 +160,19 @@ int main(int argc, char* argv[]) {
 	}
 	*/
 	//gaia::file::SetCurrentDirectory("Assets");
+
+	//gaia::Factory::Instance().Register<gaia::SpriteRenderer>("SpriteRenderer");
+	//gaia::Factory::Instance().Register<gaia::MeshRenderer>("SpriteRenderer");
+	auto spriteRenderer = gaia::Factory::Instance().Create("SpriteRenderer");
+	auto spriteRenderer = gaia::Factory::Instance().Create("MeshRenderer");
+	spriteRenderer->name = "Steve";
+	
+	/*gaia::vec3 v{34.5f, 65.5f};
+	std::cout << v << std::endl;*/
+
+	gaia::vec2 v{ 34.5f, 65.5f };
+	std::cout << v << std::endl;
+
 	gaia::Logger::Warning("Initializing Engine...");
 	gaia::GetEngine().Initialize();
 	/*gaia::Font* font = new gaia::Font();

@@ -67,5 +67,14 @@ namespace gaia {
 	{
 		m_actors.clear();
 	}
+
+	/*void Scene::Read(const json::value_t& value) {
+		for (auto& actorValue : value["actors"].GetArray()) {
+			auto actor = Factory::Instance().Create<Actor>("Actor");
+			actor->Read(actorValue);
+
+			AddActor(std::move(actor));
+		}
+	}*/
 }
 

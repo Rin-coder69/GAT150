@@ -1,6 +1,7 @@
 #include "CircleCollider2d.h"
 #include "ColliderComponents.h"
 namespace gaia {
+	FACTORY_REGISTER(CircleCollider2d)
 	void CircleCollider2d::Update(float dt) {
 		// Initialization logic for CircleCollider2d if needed
 	}

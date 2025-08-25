@@ -14,7 +14,7 @@ namespace gaia{
 		m_renderer = std::make_unique<gaia::Renderer>();
 
 		m_renderer->Initialize();
-		m_renderer->CreateWindow("gaia Engine", 1280, 1024);
+		m_renderer->CreateWindow("gaia Engine", 1280, 1024, true);
 
 		m_input = std::make_unique<gaia::InputSystem>();
 		m_input->Initialize();

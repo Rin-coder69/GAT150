@@ -1,20 +1,20 @@
 #pragma once
-#pragma once
-#include "Framework/Actor.h"
+#include "Components/Component.h"
 
-class Enemy : public gaia::Actor {
+
+class Enemy : public gaia::Component{
 public:
 	float speed = 200;
 	float fireTime = 0;
 	float fireTimer = 0;
 public:
 	Enemy() = default;
-	Enemy(const gaia::Transform& transform):
+	/*(Enemy(const gaia::Transform& transform) :
 		Actor{ transform }
-	{}
+	{}*/
 
 	void Update(float deltaTime) override;
 	// Inherited via Actor
-	void OnCollision(Actor* other) override;
+	void OnCollision(class Actor* other) ;
 
 };

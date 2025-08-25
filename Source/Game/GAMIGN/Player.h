@@ -1,7 +1,8 @@
 #pragma once
-#include "Framework/Actor.h"
+#include "Components/Component.h"
+FACTORY_REGISTER(Player)
 
-class Player : public gaia::Actor {
+class Player : public gaia::Component {
 	enum class WeaponType { Rocket, Laser };
 	WeaponType currentWeapon = WeaponType::Rocket;
 
@@ -13,13 +14,13 @@ public:
 	float fireTimer = 0.0f;
 public:
 	Player() = default;
-	Player(const gaia::Transform& transform):
+	/*Player(const gaia::Transform& transform) :
 		Actor{ transform }
-	{}
+	{}*/
 
 	void Update(float deltaTime) override;
 
 
-	void OnCollision(Actor* other) override;
+	void OnCollision(class Actor* other);
 
 };

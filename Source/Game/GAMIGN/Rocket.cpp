@@ -9,6 +9,7 @@
 #include "Math/vector2.h"
 #include "Core/Random.h"
 #include "../GamePCH.h"
+FACTORY_REGISTER(Rocket)
 
 
 

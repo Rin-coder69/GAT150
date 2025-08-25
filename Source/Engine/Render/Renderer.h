@@ -1,6 +1,9 @@
 #pragma once
 #include <SDL3/SDL.h>
 #include <iostream>
+#include <SDL3_ttf/SDL_ttf.h>
+#include <SDL3_image/SDL_image.h>
+#include <iostream>
 
 namespace gaia
 {
@@ -18,11 +21,11 @@ namespace gaia
 
 		void ShutDown();
 
-		bool CreateWindow(const std::string& name, int width, int height, bool fullscreen);
+		bool CreateWindow(const std::string& name, int width, int height, bool fullscreen = false);
 
 		SDL_Renderer* GetSDLRenderer();
 
-		bool CreateWindow(const std::string& name, int width, int height);
+		//bool CreateWindow(const std::string& name, int width, int height);
 
 		int GetWidth() {
 			return m_width;

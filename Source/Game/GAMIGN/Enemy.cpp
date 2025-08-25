@@ -3,35 +3,36 @@
 #include "Rocket.h"
 #include "gamedata.h"
 #include "../GamePCH.h"
+FACTORY_REGISTER(Enemy)
 
 void Enemy::Update(float deltaTime)
 {
-
-	Player* player = scene->GetActorByName<Player>("player");
+	bool playerSeen = false;
+	Actor* player = owner->scene->GetActorByName<Actor>("player");
 	if (player) {
 		gaia::vec2 direction{ 0,0 };
-		direction = player->transform.position - transform.position;
+		direction = player->transform.position - owner->transform.position;
 		direction = direction.Normalized();
-		transform.rotation = gaia::math::radToDeg(direction.Angle());
+		owner->transform.rotation = gaia::math::radToDeg(direction.Angle());
 	}
-	gaia::vec2 force = gaia::vec2{ 1,0 }.Rotate(gaia::math::degToRad(transform.rotation));
+	gaia::vec2 force = gaia::vec2{ 1,0 }.Rotate(gaia::math::degToRad(owner->transform.rotation));
 	//velocity += (force * speed) * deltaTime;
-	auto rb = GetComponent<gaia::RigidBody>();
+	auto rb = owner->GetComponent<gaia::RigidBody>();
 	if (rb)
 	{
 		rb->velocity += force * deltaTime;
 	}
 
-	transform.position.x = gaia::math::wrap(transform.position.x, 0.0f, (float)gaia::GetEngine().GetRenderer().GetWidth());
-	transform.position.y = gaia::math::wrap(transform.position.y, 0.0f, (float)gaia::GetEngine().GetRenderer().GetHeight());
+	owner->transform.position.x = gaia::math::wrap(owner->transform.position.x, 0.0f, (float)gaia::GetEngine().GetRenderer().GetWidth());
+	owner->transform.position.y = gaia::math::wrap(owner->transform.position.y, 0.0f, (float)gaia::GetEngine().GetRenderer().GetHeight());
 
 	fireTimer -= deltaTime;
 	if (fireTimer <= 0) {
 		fireTimer = fireTime;
 
 		//std::shared_ptr<gaia::Model> model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 0.0f,1.0f,0.0f });
-		gaia::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
-		auto rocket = std::make_unique<Rocket>(transform); //gaia::Resources().Get<gaia::Texture>("textures/blue_01.png", gaia::GetEngine().GetRenderer()));
+		gaia::Transform transform{ owner->transform.position, owner->transform.rotation, 2.0f };
+		auto rocket = std::make_unique<Actor>(transform); //gaia::Resources().Get<gaia::Texture>("textures/blue_01.png", gaia::GetEngine().GetRenderer()));
 		rocket->speed = 2.0f;
 		rocket->lifespan = 1.5f;
 		rocket->name = "enemy";
@@ -59,7 +60,7 @@ void Enemy::OnCollision(Actor* other)
 		//game->AddPoints(100);
 		for(int i = 0; i < 100; i++) {
 			gaia::Particle particle;
-			particle.position = transform.position;
+			particle.position = owner->transform.position;
 			particle.velocity = gaia::vec2{ gaia::random::getReal(-200.0f, 200.0f), gaia::random::getReal(-200.0f, 200.0f) };
 			particle.color = gaia::vec3{ 1, 1, 1 };
 			particle.lifespan = 2.0f;

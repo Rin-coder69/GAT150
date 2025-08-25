@@ -5,6 +5,7 @@
 #include "Laser.h"
 #include "Audio/AudioClip.h"
 #include "../GamePCH.h"
+FACTORY_REGISTER(Player)
 
 
 void Player::Update(float deltaTime) {

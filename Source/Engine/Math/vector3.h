@@ -1,6 +1,7 @@
 #pragma once
 #include "math.h"
 #include <cassert>
+#include <iostream>
 
 namespace gaia {
 	template <typename T>
@@ -31,6 +32,13 @@ namespace gaia {
 		Vector3 operator * (T scalar) const { return Vector3(x * scalar, y * scalar, z * scalar); }
 		Vector3 operator / (T scalar) const { assert(scalar != 0); return Vector3(x / scalar, y / scalar, z / scalar); }
 	};
+
+	template<typename T>
+	std::ostream& operator << (std::ostream& stream, Vector3<T>& v) {
+		stream << "{" << v.x << "," << v.y "," << v.z << "}";
+
+		return stream;
+	}
 	using ivec3 = Vector3<int>;
 	using vec3 = Vector3<float>;
 };
