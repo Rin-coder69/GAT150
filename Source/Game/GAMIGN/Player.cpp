@@ -4,6 +4,7 @@
 #include "SpaceGame.h"
 #include "Laser.h"
 #include "Audio/AudioClip.h"
+#include "Framework/Actor.h"
 #include "../GamePCH.h"
 FACTORY_REGISTER(Player)
 
@@ -16,7 +17,7 @@ void Player::Update(float deltaTime) {
     }
 
     gaia::Particle particle;
-	particle.position = transform.position;
+	particle.position = owner->transform.position;
     particle.velocity = gaia::vec2{ gaia::random::getReal(-200.0f,200.0f),gaia::random::getReal(-200.0f,200.0f) };
 	particle.color = gaia::vec3{ 1,1,1 };
 	particle.lifespan = 2.0f;
@@ -34,11 +35,11 @@ void Player::Update(float deltaTime) {
 
 
 
-    transform.rotation += (rotate * rotationspeed) * deltaTime;
+    owner->transform.rotation += (rotate * rotationspeed) * deltaTime;
     gaia::vec2 direction{ 1,0 };
-    gaia::vec2 force = direction.Rotate(gaia::math::degToRad(transform.rotation)) * thrust * speed;
+    gaia::vec2 force = direction.Rotate(gaia::math::degToRad(owner->transform.rotation)) * thrust * speed;
     //velocity += force * deltaTime;
-    auto rb = GetComponent<gaia::RigidBody>();
+    auto rb = owner->GetComponent<gaia::RigidBody>();
     if (rb)
     {
 		rb->velocity += force * deltaTime;
@@ -46,8 +47,8 @@ void Player::Update(float deltaTime) {
 
 
 
-    transform.position.x = gaia::math::wrap(transform.position.x, 0.0f, (float)gaia::GetEngine().GetRenderer().GetWidth());
-    transform.position.y = gaia::math::wrap(transform.position.y, 0.0f, (float)gaia::GetEngine().GetRenderer().GetHeight());
+    owner->transform.position.x = gaia::math::wrap(owner->transform.position.x, 0.0f, (float)gaia::GetEngine().GetRenderer().GetWidth());
+    owner->transform.position.y = gaia::math::wrap(owner->transform.position.y, 0.0f, (float)gaia::GetEngine().GetRenderer().GetHeight());
 
  
 
@@ -55,7 +56,7 @@ void Player::Update(float deltaTime) {
     if (gaia::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_SPACE) && fireTimer <= 0) {
         fireTimer = fireTime;
 		gaia::GetEngine().GetAudio().PlaySound(*gaia::Resources().Get<gaia::AudioClip>("cowbell.wav", gaia::GetEngine().GetAudio()));
-        gaia::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
+        gaia::Transform transform{ owner->transform.position, owner->transform.rotation, 2.0f };
         std::shared_ptr<gaia::Model> model;
 
         switch (currentWeapon) {
@@ -76,7 +77,7 @@ void Player::Update(float deltaTime) {
 				auto rb = std::make_unique<gaia::RigidBody>();
 				rocket->AddComponent(std::move(rb));
 
-                scene->AddActor(std::move(rocket));
+                owner->scene->AddActor(std::move(rocket));
                 gaia::GetEngine().GetAudio().PlaySound(*gaia::Resources().Get<gaia::AudioClip>("cowbell.wav", gaia::GetEngine().GetAudio()));
             }
             break;
@@ -95,7 +96,7 @@ void Player::Update(float deltaTime) {
 				auto spriteRender = std::make_unique<gaia::SpriteRenderer>();
 				spriteRender->textureName = "textures/laser.png";
 				laser->AddComponent(std::move(spriteRender));
-                scene->AddActor(std::move(laser));
+                owner->scene->AddActor(std::move(laser));
                 gaia::GetEngine().GetAudio().PlaySound("Laser.wav"); // add a laser sound too
             }
             break;
@@ -103,18 +104,24 @@ void Player::Update(float deltaTime) {
     }
 
 
-    Actor::Update(deltaTime);
 }
 
-void Player::OnCollision(Actor* other)
+void Player::OnCollision(gaia::Actor* other)
 {   
-    if (other->tag != tag) {
+    if (owner->tag != other->tag) {
 
-    destroyed = true;
-    dynamic_cast<SpaceGame*>(scene->GetGame())->OnPlayerDeath();
+   owner->destroyed = true;
+    dynamic_cast<SpaceGame*>(owner->scene->GetGame())->OnPlayerDeath();
 				//scene->GetGame()->AddPoints(100);
     }
 	std::cout << other->tag << std::endl;
+}
+
+void Player::Read(const gaia::json::value_t& value)
+{
+	Object::Read(value);
+
+	JSON_READ(value, speed);
 }
   
 

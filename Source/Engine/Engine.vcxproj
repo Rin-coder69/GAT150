@@ -182,8 +182,10 @@
     </ClCompile>
     <ClCompile Include="Framework\Actor.cpp" />
     <ClCompile Include="Framework\Game.cpp" />
+    <ClCompile Include="Framework\Object.cpp" />
     <ClCompile Include="Framework\Scene.cpp" />
     <ClCompile Include="Input\InputSystem.cpp" />
+    <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Render\Font.cpp" />
     <ClCompile Include="Render\Model.cpp" />
     <ClCompile Include="Render\ParticleSystem.cpp" />
@@ -194,6 +196,7 @@
   <ItemGroup>
     <ClInclude Include="Audio\AudioClip.h" />
     <ClInclude Include="Audio\AudioSystem.h" />
+    <ClInclude Include="Components\AudioSource.h" />
     <ClInclude Include="Components\CircleCollider2d.h" />
     <ClInclude Include="Components\ColliderComponents.h" />
     <ClInclude Include="Components\Component.h" />
@@ -205,6 +208,7 @@
     <ClInclude Include="Core\Json.h" />
     <ClInclude Include="Core\Logger.h" />
     <ClInclude Include="core\Random.h" />
+    <ClInclude Include="Core\serializable.h" />
     <ClInclude Include="Core\Singleton.h" />
     <ClInclude Include="core\StringHelper.h" />
     <ClInclude Include="core\Time.h" />

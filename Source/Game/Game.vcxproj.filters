@@ -26,6 +26,9 @@
     <Filter Include="GAMIGN">
       <UniqueIdentifier>{50dffc52-6cf2-429a-950f-c3834ab5bf8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{e231b6ca-c7b2-4266-a3b9-cd64b9fea399}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAMIGN\Enemy.h">
@@ -47,5 +50,10 @@
       <Filter>GAMIGN</Filter>
     </ClInclude>
     <ClInclude Include="GamePCH.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Build\Assets\scene.json">
+      <Filter>Assets</Filter>
+    </None>
   </ItemGroup>
 </Project>

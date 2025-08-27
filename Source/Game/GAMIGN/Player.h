@@ -1,6 +1,6 @@
 #pragma once
 #include "Components/Component.h"
-FACTORY_REGISTER(Player)
+
 
 class Player : public gaia::Component {
 	enum class WeaponType { Rocket, Laser };
@@ -21,6 +21,8 @@ public:
 	void Update(float deltaTime) override;
 
 
-	void OnCollision(class Actor* other);
+	void OnCollision(class gaia::Actor* other);
+
+	void Read(const gaia::json::value_t& value) override;
 
 };

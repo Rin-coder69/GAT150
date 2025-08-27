@@ -35,7 +35,7 @@ namespace gaia {
 
 	template<typename T>
 	std::ostream& operator << (std::ostream& stream, Vector3<T>& v) {
-		stream << "{" << v.x << "," << v.y "," << v.z << "}";
+		stream << "{" << v.x << "," << v.y << "," << v.z << "}";
 
 		return stream;
 	}

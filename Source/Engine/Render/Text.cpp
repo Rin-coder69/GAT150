@@ -33,6 +33,8 @@ namespace gaia {
 	}
 
 	void Text::Draw(Renderer& renderer, float x, float y) {
+		if (!m_texture) return;
+
 		// get the texture width and height
 		float width, height;
 		bool success = SDL_GetTextureSize(m_texture, &width, &height);

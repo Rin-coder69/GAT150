@@ -7,6 +7,7 @@ FACTORY_REGISTER(Enemy)
 
 void Enemy::Update(float deltaTime)
 {
+	/*
 	bool playerSeen = false;
 	Actor* player = owner->scene->GetActorByName<Actor>("player");
 	if (player) {
@@ -50,13 +51,14 @@ void Enemy::Update(float deltaTime)
 	}
 
 	Actor::Update(deltaTime);
+	*/
 }
 
-void Enemy::OnCollision(Actor* other)
+void Enemy::OnCollision(gaia::Actor* other)
 {
-	if (tag != other->tag) {
-		destroyed = true;
-		scene->GetGame()->AddPoints(100);
+	if (owner->tag != other->tag) {
+		owner->destroyed = true;
+		owner->scene->GetGame()->AddPoints(100);
 		//game->AddPoints(100);
 		for(int i = 0; i < 100; i++) {
 			gaia::Particle particle;

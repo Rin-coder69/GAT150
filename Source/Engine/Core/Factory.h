@@ -27,19 +27,29 @@ namespace gaia
 	};
 	template<typename T>
 		requires std::derived_from<T, Object>
-	class Creator : public CreatorBase {
+	class ProtoTypeCreator : public CreatorBase {
 	public:
+		ProtoTypeCreator(std::make_unique<T> prototype):
+			m_prototype{ std::move(prototype) }
+		{ }
 		std::unique_ptr<Object> Create() override {
-			return std::make_unique<T>();
+			return m_prototype->Clone();
 		}
+
+	private:
+		std::unique_ptr<T> m_prototype;
+
 	};
 
-	class Factory : public Singleton<Factory>
-	{
+	class Factory : public Singleton<Factory> {
 	public:
 		template<typename T>
 		requires std::derived_from<T, Object>
 		void Register(const std::string& name);
+
+		template<typename T>
+			requires std::derived_from<T, Object>
+		void RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype);
 
 		template<typename T = Object>
 		requires std::derived_from<T, Object>
@@ -56,8 +66,19 @@ namespace gaia
 		std::string key = tolower(name);
 		m_registry[key] = std::make_unique<Creator<T>>();
 
-		Logger::Info("{} added to Factory: {}", name);
+		Logger::Info("added to Factory: {}", name);
 	}
+
+
+	template<typename T>
+		requires std::derived_from<T, Object>
+	inline void Factory::RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype)
+	{
+		m_registry[key] = std::make_unique<ProtoTypeCreator<T>>(std::move(prototype));
+	}
+
+
+
 	template<typename T>
 	requires std::derived_from<T, Object>
 	inline std::unique_ptr<T> Factory::Create(const std::string& name)
@@ -69,10 +90,19 @@ namespace gaia
 		auto it = m_registry.find(key);
 		if (it != m_registry.end()) {
 			//found creator, create object
-			return it->second->Create();
+			auto object = it->second->Create();
+			T* derived = dynamic_cast<T*>(object.get());
+			if (derived) {
+				object.release();
+				return std::unique_ptr<T>(derived);
+			}
+			Logger::Error("Type Mismatch of factory object: {}", name);
+				//return it->second->Create();
 		}
-		Logger::Error("Could not create factory object: {}", name)
+		else {
+			Logger::Error("Could not create factory object: {}", name);
+		}
 		return nullptr;
-		return m_registry[key]->Create();
+		//return m_registry[key]->Create();
 	}
 }

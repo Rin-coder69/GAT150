@@ -15,59 +15,45 @@ namespace gaia
             Logger::Error("SDL_Init Error : {}", SDL_GetError());
             return false;
         }
-        if(!TTF_Init()) {
-           Logger::Error("TTF_Init Error {}", SDL_GetError());
+        if (!TTF_Init()) {
+            Logger::Error("TTF_Init Error {}", SDL_GetError());
             return false;
-		}
+        }
 
         return true;
 
     }
 
-   
-  
+
+
 
     void Renderer::DrawPoint(float x, float y)
     {
-		SDL_RenderPoint(renderer, x, y);
+        SDL_RenderPoint(renderer, x, y);
     }
 
 
-    bool CreateWindow(const std::string& name, int width, int height, bool fullscreen){
+    bool Renderer::CreateWindow(const std::string& name, int width, int height, bool fullscreen) {
         m_width = width;
         m_height = height;
 
-        m_window = SDL_CreateWindow(name.c_str(), width, height, fullscreen ? SDL_WINDOW_FULLSCREEN | SDL_WINDOW_OPENGL : 0);
-        if (m_window == nullptr) {
+        window = SDL_CreateWindow(name.c_str(), width, height, fullscreen ? SDL_WINDOW_FULLSCREEN | SDL_WINDOW_OPENGL : 0);
+        if (window == nullptr) {
             Logger::Error("SDL_CreateWindow Error: {}", SDL_GetError());
             SDL_Quit();
             return false;
         }
-        SDL_SetRenderLogicalPresentation(m_renderer, width, height, SDL_LOGICAL_PRESENTATION_LETTERBOX);
-        return true;
-    }
+        
 
-
-    bool Renderer::CreateWindow(const std::string& name, int width, int height)    {
-        window = SDL_CreateWindow(name.c_str(), width, height, 0);
-		m_width = width;
-		m_height = height;
-    if (window == nullptr) {
-        Logger::Error("SDL_CreateWindow Error {} ",SDL_GetError());
-        SDL_Quit();
-        return false;
-    
-    }
-
-    renderer = SDL_CreateRenderer(window, NULL);
-    if (renderer == nullptr) {
-        Logger::Error("SDL_CreateRenderer Error {}",SDL_GetError());
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return false;
+        renderer = SDL_CreateRenderer(window, NULL);
+        if (renderer == nullptr) {
+            Logger::Error("SDL_CreateRenderer Error {}", SDL_GetError());
+            SDL_DestroyWindow(window);
+            SDL_Quit();
+            return false;
         }
-
-    return true;
+        SDL_SetRenderLogicalPresentation(renderer, width, height, SDL_LOGICAL_PRESENTATION_LETTERBOX);
+        return true;
 
     }
 
@@ -76,33 +62,33 @@ namespace gaia
         SDL_SetRenderDrawColor(renderer, r, g, b, a);
     };*/
 
-    SDL_Renderer* Renderer::GetSDLRenderer()
+    SDL_Renderer* gaia::Renderer::GetSDLRenderer()
     {
         return renderer;
-	}
-    void Renderer::SetColor(float r, float g, float b, float a)
+    }
+    void gaia::Renderer::SetColor(float r, float g, float b, float a)
     {
         SDL_SetRenderDrawColorFloat(renderer, r, g, b, a);
     };
 
-    void Renderer::Clear()
+    void gaia::Renderer::Clear()
     {
         SDL_RenderClear(renderer);
     };
 
-    void Renderer::Present()
+    void gaia::Renderer::Present()
     {
         SDL_RenderPresent(renderer);
     };
 
-    void Renderer::DrawLine(float x1, float y1, float x2, float y2)
+    void gaia::Renderer::DrawLine(float x1, float y1, float x2, float y2)
     {
         SDL_RenderLine(renderer, x1, y1, x2, y2);
     };
 
-    void Renderer::DrawTexture(Texture& texture, float x, float y)
+    /*void gaia::Renderer::DrawTexture(Texture& texture, float x, float y)
     {
-		vec2 size = texture.GetSize();
+        vec2 size = texture.GetSize();
 
             SDL_FRect destRect;
         destRect.x = x;
@@ -111,11 +97,11 @@ namespace gaia
         destRect.h = size.y;
 
         SDL_RenderTexture(renderer, texture.m_texture, NULL, &destRect);
-    }
+    }*/
 
 
 
-    void Renderer::DrawTexture(Texture* texture, float x, float y, float angle, float scale) {
+    void gaia::Renderer::DrawTexture(Texture* texture, float x, float y, float angle, float scale) {
 
         vec2 size = texture->GetSize();
 
@@ -123,18 +109,18 @@ namespace gaia
         destRect.w = size.x * scale;
         destRect.h = size.y * scale;
         destRect.x = x - destRect.w * 0.5f;// Center the texture
-		destRect.y = y - destRect.h * 0.5f;// Center the texture
-       
+        destRect.y = y - destRect.h * 0.5f;// Center the texture
+
 
         SDL_RenderTextureRotated(renderer, texture->m_texture, NULL, &destRect, angle, NULL, SDL_FLIP_NONE);
     }
-    
-    void  Renderer:: ShutDown() {
-		TTF_Quit();
+
+    void  gaia::Renderer::ShutDown() {
+        TTF_Quit();
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
         SDL_Quit();
     }
 
-   
 }
+

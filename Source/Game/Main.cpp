@@ -40,7 +40,7 @@ Register##classname register_instance;
 
 
 int main(int argc, char* argv[]) {
-
+	gaia::Logger::SetEnabledLevels(gaia::LogLevel::Warning|gaia::LogLevel::Error | gaia::LogLevel::Debug);
 
 	gaia::file::SetCurrentDirectory("Assets");
 	// load the json data from a file
@@ -163,8 +163,8 @@ int main(int argc, char* argv[]) {
 
 	//gaia::Factory::Instance().Register<gaia::SpriteRenderer>("SpriteRenderer");
 	//gaia::Factory::Instance().Register<gaia::MeshRenderer>("SpriteRenderer");
-	auto spriteRenderer = gaia::Factory::Instance().Create("SpriteRenderer");
-	auto spriteRenderer = gaia::Factory::Instance().Create("MeshRenderer");
+	auto spriteRenderer = gaia::Factory::Instance().Create<gaia::SpriteRenderer>("SpriteRenderer");
+	//auto spriteRenderer = gaia::Factory::Instance().Create("MeshRenderer");
 	spriteRenderer->name = "Steve";
 	
 	/*gaia::vec3 v{34.5f, 65.5f};
@@ -173,7 +173,7 @@ int main(int argc, char* argv[]) {
 	gaia::vec2 v{ 34.5f, 65.5f };
 	std::cout << v << std::endl;
 
-	gaia::Logger::Warning("Initializing Engine...");
+	gaia::Logger::Info("Initializing Engine...");
 	gaia::GetEngine().Initialize();
 	/*gaia::Font* font = new gaia::Font();
 	font->Load("ArcadeClassic.ttf", 20);*/
@@ -201,7 +201,7 @@ int main(int argc, char* argv[]) {
 	//std::shared_ptr<gaia::Texture> texture = std::make_shared<gaia::Texture>();
 	//texture->Load("Wilnas.png", gaia::GetEngine().GetRenderer());
 	
-	auto texture = gaia::Resources().Get<gaia::Texture>("Textures/blue_01.png", gaia::GetEngine().GetRenderer());
+	//auto texture = gaia::Resources().Get<gaia::Texture>("Textures/blue_01.png", gaia::GetEngine().GetRenderer());
 
 	while (!quit) {
 		while (SDL_PollEvent(&e)) {
@@ -228,7 +228,7 @@ int main(int argc, char* argv[]) {
 		game->Draw(gaia::GetEngine().GetRenderer());
 
 		rotate += 90 * gaia::GetEngine().GetTime().GetDeltaTime();
-		gaia::GetEngine().GetRenderer().DrawTexture(texture.get(), 30.0f, 30.0f, rotate, 4.0f);
+		//gaia::GetEngine().GetRenderer().Draw(texture.get(), 30.0f, 30.0f, rotate, 4.0f);
 
 
 		// stars

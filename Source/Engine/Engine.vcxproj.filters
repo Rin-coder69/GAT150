@@ -101,6 +101,12 @@
     <ClCompile Include="Components\AudioSource.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Object.cpp">
+      <Filter>Source\Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\Time.h">
@@ -210,6 +216,12 @@
     </ClInclude>
     <ClInclude Include="Core\Factory.h">
       <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\serializable.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\AudioSource.h">
+      <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

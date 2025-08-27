@@ -15,6 +15,6 @@ public:
 
 	void Update(float deltaTime) override;
 	// Inherited via Actor
-	void OnCollision(class Actor* other) ;
+	void OnCollision(class gaia::Actor* other) ;
 
 };

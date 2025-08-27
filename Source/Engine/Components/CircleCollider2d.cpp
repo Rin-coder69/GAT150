@@ -15,5 +15,10 @@ namespace gaia {
 			if (distance <= radii) return true;
 		}
 		return false;
-	};
+	}
+	void CircleCollider2d::Read(const json::value_t& value) {
+		Object::Read(value);
+
+		JSON_READ(value, radius);
+	}
 }

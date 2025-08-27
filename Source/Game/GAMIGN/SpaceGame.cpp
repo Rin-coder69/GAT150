@@ -27,6 +27,10 @@ FMOD::Channel* m_musicChannel = nullptr;
 bool SpaceGame::Initialize()
 {
     m_scene = std::make_unique<gaia::Scene>(this);
+
+    gaia::json::document_t document;
+    gaia::json::Load("scene.json", document);
+    //m_scene->
 		// Initialize fonts
 	//m_ttfFont = std::make_shared<gaia::Font>();
 	//m_ttfFont->Load("ArcadeClassic.ttf", 128);
@@ -78,6 +82,8 @@ void SpaceGame::Update(float dt)
 		m_scene->RemoveAllActors();
         std::shared_ptr<gaia::Model> model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 0.0f, 0.4f, 1.0f });
         gaia::Transform transform{ gaia::vec2{ gaia::GetEngine().GetRenderer().GetWidth() * 0.5f, gaia::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 0.5};
+
+        /*
 		// Create the player actor
         auto player = std::make_unique<Player>(transform);
         player->speed = 1500.0f;
@@ -101,15 +107,17 @@ void SpaceGame::Update(float dt)
 		player->AddComponent(std::move(collider));
 
         m_scene->AddActor(std::move(player));
+          */
         m_gameState = GameState::Game;
     }
     break;
+  
     case SpaceGame::GameState::Game:
 		m_enemySpawnTimer -= dt;
         if (m_enemySpawnTimer <= 0) {
             m_enemySpawnTimer = 2; // Reset enemy spawn timer
 
-            // create enemies
+            /*// create enemies
             std::shared_ptr<gaia::Model> enemyModel = std::make_shared<gaia::Model>(GameData::enemyPoints, gaia::vec3{1, 0, 0 });
             gaia::Transform transform{ gaia::vec2{ gaia::random::getReal() * gaia::GetEngine().GetRenderer().GetWidth() * 0.5f, gaia::random::getReal() * gaia::GetEngine().GetRenderer().GetHeight() }, 0, 10 };
             std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform);
@@ -119,7 +127,7 @@ void SpaceGame::Update(float dt)
             enemy->speed = (gaia::random::getReal()*200) + 300;//(gaia::random::getReal() * 800) + 500;
             enemy->tag = "enemy";
             m_scene->AddActor(std::move(enemy));
-
+            */
 
         }
         break;

@@ -7,11 +7,12 @@
 #include <memory>
 #include <string>
 #include "Actor.h"
+#include "Core/serializable.h"
 
 namespace gaia {
 	class Actor;
 	class Game;
-	class Scene {
+	class Scene : public Serializable {
 	public:
 
 		Scene(Game* game) : m_game{ game } {}
@@ -37,6 +38,10 @@ namespace gaia {
 	private:
 		class Game* m_game{ nullptr };
 		std::list<std::unique_ptr<Actor>> m_actors;
+
+
+		// Inherited via Serializable
+		void Read(const json::value_t& value) override;
 
 	};
 

@@ -20,3 +20,9 @@
 #include "Render/Text.h"
 #include "Render/Texture.h"
 #include "Render/ParticleSystem.h"
+
+//Framework
+#include "Framework/Object.h"
+#include "Framework/Actor.h"
+#include "Framework/Scene.h"
+#include "Framework/Game.h"

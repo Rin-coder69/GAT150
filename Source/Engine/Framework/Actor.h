@@ -18,7 +18,7 @@ namespace gaia {
 
 		Transform transform;
 		class Scene* scene{ nullptr };
-
+	public:
 		Actor() = default;
 		Actor(const Transform& transform) :
 			transform{ transform }
@@ -27,9 +27,10 @@ namespace gaia {
 
 		virtual void Update(float dt);
 		virtual void Draw(class Renderer& renderer) const;
+		void Read(const json::value_t& value) override;
 
 
-		virtual void OnCollision(Actor* other) = 0;
+		virtual void OnCollision(Actor* other) {};
 		float GetRadius();
 
 		void AddComponent(std::unique_ptr<Component> component);
