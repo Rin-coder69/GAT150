@@ -1,7 +1,5 @@
 #pragma once
-
 //core
-#include "Core/Factory.h"
 #include "Core/File.h"
 ////#include "Core/Log.h"
 #include "Core/Random.h"
@@ -26,7 +24,6 @@
 //resources
 #include "Resources/Resource.h"
 #include "Resources/ResourceManager.h"
-
 //third part libaray
 #include <fmod.hpp>
 #include <fmod_errors.h>
@@ -45,3 +42,5 @@
 #include <algorithm>
 #include <filesystem>
 #include <memory>
+#include "Core/Factory.h"
+#include "Components/CircleCollider2d.h"

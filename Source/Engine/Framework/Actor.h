@@ -15,6 +15,7 @@ namespace gaia {
 		std::string tag;
 		bool destroyed{ false };
 		float lifespan{ 0 };
+		bool persistent{ false };
 
 		Transform transform;
 		class Scene* scene{ nullptr };

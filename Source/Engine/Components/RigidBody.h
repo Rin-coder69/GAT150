@@ -14,7 +14,7 @@ namespace gaia {
 			// Update function to apply physics
 			void Update(float dt) override;
 		// Update the position based on velocity and apply damping
-		void Read(const json::value_t& value) override;
+		
 	};
 }
 	

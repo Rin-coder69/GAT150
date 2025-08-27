@@ -66,6 +66,10 @@ namespace gaia::random {
         return dist(generator());
     }
     inline vec2 onUnitCircle() {
-
+        float radius = getReal(gaia::math::TWO_PI);
+        vec2 result;
+		result.x = math::cosf(radius);
+		result.y = math::sinf(radius);
+        return result;
     }
 }

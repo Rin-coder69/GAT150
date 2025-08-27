@@ -21,7 +21,7 @@ public:
 
 	void Update(float dt) override;
 	void Draw(class gaia::Renderer& renderer) override ;
-
+	void SpawnEnemy();
 	void OnPlayerDeath();
 private:
 	friend class Text;

@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "gamedata.h"
+#include "Core/Factory.h"
 #include "Resources/ResourceManager.h"
 #include "Render/particlesystem.h"
 #include "Audio/AudioSystem.h"
@@ -29,7 +30,7 @@ bool SpaceGame::Initialize()
     m_scene = std::make_unique<gaia::Scene>(this);
 
     gaia::json::document_t document;
-    gaia::json::Load("scene.json", document);
+    m_scene->Load("scene.json");
     //m_scene->
 		// Initialize fonts
 	//m_ttfFont = std::make_shared<gaia::Font>();
@@ -79,8 +80,13 @@ void SpaceGame::Update(float dt)
 		audio->createSound("wilnas.wav",FMOD_DEFAULT,0, &sound);
 		audio->playSound(sound, nullptr, false, nullptr);
 		audio->update();
-		m_scene->RemoveAllActors();
-        std::shared_ptr<gaia::Model> model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 0.0f, 0.4f, 1.0f });
+		//m_scene->RemoveAllActors();
+
+		auto player = gaia::Instantiate<gaia::Actor>("player");
+		m_scene->AddActor(std::move(player));
+
+
+        std::shared_ptr<gaia::Model> model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 0.0f, 0.4f, 0.2f });
         gaia::Transform transform{ gaia::vec2{ gaia::GetEngine().GetRenderer().GetWidth() * 0.5f, gaia::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 0.5};
 
         /*
@@ -116,20 +122,9 @@ void SpaceGame::Update(float dt)
 		m_enemySpawnTimer -= dt;
         if (m_enemySpawnTimer <= 0) {
             m_enemySpawnTimer = 2; // Reset enemy spawn timer
-
-            /*// create enemies
-            std::shared_ptr<gaia::Model> enemyModel = std::make_shared<gaia::Model>(GameData::enemyPoints, gaia::vec3{1, 0, 0 });
-            gaia::Transform transform{ gaia::vec2{ gaia::random::getReal() * gaia::GetEngine().GetRenderer().GetWidth() * 0.5f, gaia::random::getReal() * gaia::GetEngine().GetRenderer().GetHeight() }, 0, 10 };
-            std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform);
-            enemy->fireTime = 3;
-			enemy->fireTimer = 5;
-            //enemy->damping = 0.2f;
-            enemy->speed = (gaia::random::getReal()*200) + 300;//(gaia::random::getReal() * 800) + 500;
-            enemy->tag = "enemy";
-            m_scene->AddActor(std::move(enemy));
-            */
-
-        }
+            SpawnEnemy();
+        };
+            
         break;
 
     case SpaceGame::GameState::PlayerDead:
@@ -195,9 +190,22 @@ void SpaceGame::Update(float dt)
 		m_stateTimer = 2;
 	}
 
+    void SpaceGame::SpawnEnemy() {
+        gaia::Actor* player = m_scene->GetActorByName<gaia::Actor>("player");
+        if (player) {
+            gaia::vec2 position = player->transform.position + gaia::random::onUnitCircle() * gaia::random::getReal(200.0f, 500.0f);
+            gaia::Transform transform{ position, gaia::random::getReal(0.0f, 360.0f),0.2f };
+
+            auto enemy = gaia::Instantiate("enemy", transform);
+			
+            //enemy->GetComponent<gaia::Transform>()->position = gaia::vec2{ gaia::random::getReal() * gaia::GetEngine().GetRenderer().GetWidth(), gaia::random::getReal() * gaia::GetEngine().GetRenderer().GetHeight() };
+            m_scene->AddActor(std::move(enemy));
+        }
+    }
+
     void SpaceGame::ShutDown()
     {
-        m_scene->RemoveAllActors();
+        
     }
 
     

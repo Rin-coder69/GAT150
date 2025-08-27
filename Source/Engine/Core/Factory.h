@@ -3,6 +3,7 @@
 #include "StringHelper.h"
 #include "Singleton.h"
 #include "Logger.h"	
+
 #include <map>
 #include <memory>
 #include <string>
@@ -17,21 +18,32 @@ Register##classname register_instance;
 
 
 
+
 namespace gaia
 {
+	class Actor;
 	class CreatorBase {
 	public:
-	virtual ~CreatorBase() = default;
-	virtual std::unique_ptr<Object> Create() = 0;
+		virtual ~CreatorBase() = default;
+		virtual std::unique_ptr<Object> Create() = 0;
 
+	};
+	template<typename T>
+		requires std::derived_from<T, Object>
+	class Creator : public CreatorBase {
+	public:
+		std::unique_ptr<Object> Create() override {
+			return std::make_unique<T>();
+		}
 	};
 	template<typename T>
 		requires std::derived_from<T, Object>
 	class ProtoTypeCreator : public CreatorBase {
 	public:
-		ProtoTypeCreator(std::make_unique<T> prototype):
+		ProtoTypeCreator(std::unique_ptr<T> prototype) :
 			m_prototype{ std::move(prototype) }
-		{ }
+		{
+		}
 		std::unique_ptr<Object> Create() override {
 			return m_prototype->Clone();
 		}
@@ -44,7 +56,7 @@ namespace gaia
 	class Factory : public Singleton<Factory> {
 	public:
 		template<typename T>
-		requires std::derived_from<T, Object>
+			requires std::derived_from<T, Object>
 		void Register(const std::string& name);
 
 		template<typename T>
@@ -52,7 +64,7 @@ namespace gaia
 		void RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype);
 
 		template<typename T = Object>
-		requires std::derived_from<T, Object>
+			requires std::derived_from<T, Object>
 		std::unique_ptr<T> Create(const std::string& name);
 	private:
 		std::map<std::string, std::unique_ptr<CreatorBase>> m_registry;
@@ -60,7 +72,7 @@ namespace gaia
 	};
 
 	template<typename T>
-	requires std::derived_from<T, Object>
+		requires std::derived_from<T, Object>
 	inline void Factory::Register(const std::string& name)
 	{
 		std::string key = tolower(name);
@@ -72,8 +84,8 @@ namespace gaia
 
 	template<typename T>
 		requires std::derived_from<T, Object>
-	inline void Factory::RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype){
-	
+	inline void Factory::RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype) {
+
 		std::string key = tolower(name);
 		m_registry[key] = std::make_unique<ProtoTypeCreator<T>>(std::move(prototype));
 
@@ -83,7 +95,7 @@ namespace gaia
 
 
 	template<typename T>
-	requires std::derived_from<T, Object>
+		requires std::derived_from<T, Object>
 	inline std::unique_ptr<T> Factory::Create(const std::string& name)
 	{
 		//make case-insensitive(lowercase)
@@ -100,7 +112,7 @@ namespace gaia
 				return std::unique_ptr<T>(derived);
 			}
 			Logger::Error("Type Mismatch of factory object: {}", name);
-				//return it->second->Create();
+			//return it->second->Create();
 		}
 		else {
 			Logger::Error("Could not create factory object: {}", name);
@@ -108,4 +120,29 @@ namespace gaia
 		return nullptr;
 		//return m_registry[key]->Create();
 	}
+
+	template<typename T = Actor>
+	requires std::derived_from<T, Actor>
+	std::unique_ptr<T> Instantiate(const std::string& name) {
+		return gaia::Factory::Instance().Create<T>(name);
+	}
+
+	template<typename T = Actor>
+	requires std::derived_from<T, Actor>
+	std::unique_ptr<T> Instantiate(const std::string& name, const vec2 position, float rotation, float scale) {
+
+		auto instance = Factory::Instance().Create<T>(name);
+		instance->transform = Transform{ position, rotation, scale };
+		return instance;
+	}
+
+	template<typename T = Actor>
+		requires std::derived_from<T, Actor>
+	std::unique_ptr<T> Instantiate(const std::string& name, const Transform& transform) {
+		auto instance = Factory::Instance().Create<T>(name);
+		instance->transform = transform;
+		return instance;
+
+	}
 }
+

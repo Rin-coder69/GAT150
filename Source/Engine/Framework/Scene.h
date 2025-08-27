@@ -25,7 +25,10 @@ namespace gaia {
 		void Draw(class Renderer& renderer);
 
 		void AddActor(std::unique_ptr<Actor> actor);
-		void RemoveAllActors();
+		void RemoveAllActors(bool force = false);
+
+		void Read(const json::value_t& value) override;
+		bool Load(const std::string& filename);
 
 		template<typename T = Actor>
 		T* GetActorByName(const std::string& name);
@@ -41,7 +44,7 @@ namespace gaia {
 
 
 		// Inherited via Serializable
-		void Read(const json::value_t& value) override;
+
 
 	};
 

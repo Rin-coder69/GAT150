@@ -63,19 +63,52 @@ namespace gaia {
 
 		m_actors.push_back(std::move(actor));
 	}
-	void Scene::RemoveAllActors()
+	void Scene::RemoveAllActors(bool force)
 	{
-		m_actors.clear();
+		for (auto iter = m_actors.begin(); iter != m_actors.end();) {
+			if (!(*iter)->persistent || force) {
+				iter = m_actors.erase(iter);
+			}
+			else {
+				iter++;
+			}
+		}
 	}
 
 
 	void Scene::Read(const json::value_t& value) {
-		for (auto& actorValue : value["actors"].GetArray()) {
-			auto actor = Factory::Instance().Create<Actor>("Actor");
-			actor->Read(actorValue);
+		if (JSON_HAS(value, prototypes)) {
+			for (auto& actorValue : JSON_GET(value, prototypes).GetArray()) {
+				auto actor = Factory::Instance().Create<Actor>("Actor");
+				actor->Read(actorValue);
 
-			AddActor(std::move(actor));
+				std::string name = actor->name;
+				Factory::Instance().RegisterPrototype<Actor>(name, std::move(actor));
+			}
+		}
+
+		if (JSON_HAS(value, actors)) {
+			for (auto& actorValue : value["actors"].GetArray()) {
+				auto actor = Factory::Instance().Create<Actor>("Actor");
+				actor->Read(actorValue);
+
+				AddActor(std::move(actor));
+			}
 		}
 	}
+	bool Scene::Load(const std::string& filename)
+	{
+		json::document_t document;
+		if (!json::Load(filename, document)) {
+			Logger::Error("Failed to load scene file: {}", filename);
+			return false;
+		}
+		Read(document);
+		for (auto& actor : m_actors) {
+			//start actors
+		}
+		return true;
+	}
 }
+
 

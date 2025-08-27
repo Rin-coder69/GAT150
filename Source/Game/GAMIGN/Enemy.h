@@ -1,5 +1,6 @@
 #pragma once
 #include "Components/Component.h"
+#include "Core/Factory.h"
 
 
 class Enemy : public gaia::Component{
@@ -11,7 +12,7 @@ public:
 public:
 	Enemy() = default;
 	
-	CLASS_PROTOTYPE(Enemy)
+	Class_PROTOTYPE(Enemy);
 
 
 	void Update(float deltaTime) override;
