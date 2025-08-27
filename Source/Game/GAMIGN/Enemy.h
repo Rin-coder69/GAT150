@@ -7,14 +7,15 @@ public:
 	float speed = 200;
 	float fireTime = 0;
 	float fireTimer = 0;
+
 public:
 	Enemy() = default;
-	/*(Enemy(const gaia::Transform& transform) :
-		Actor{ transform }
-	{}*/
+	
+	CLASS_PROTOTYPE(Enemy)
+
 
 	void Update(float deltaTime) override;
 	// Inherited via Actor
-	void OnCollision(class gaia::Actor* other) ;
+	void OnCollision(class gaia::Actor* other);
 
 };

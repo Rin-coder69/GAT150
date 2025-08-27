@@ -17,6 +17,7 @@ public:
 	/*Player(const gaia::Transform& transform) :
 		Actor{ transform }
 	{}*/
+	Class_PROTOTYPE(Player)
 
 	void Update(float deltaTime) override;
 

@@ -72,9 +72,12 @@ namespace gaia
 
 	template<typename T>
 		requires std::derived_from<T, Object>
-	inline void Factory::RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype)
-	{
+	inline void Factory::RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype){
+	
+		std::string key = tolower(name);
 		m_registry[key] = std::make_unique<ProtoTypeCreator<T>>(std::move(prototype));
+
+		Logger::Info("added to Factory: {}", name);
 	}
 
 

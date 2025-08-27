@@ -6,6 +6,18 @@
 #include "Components/RendererComponents.h"
 
 
+gaia::Actor::Actor(const Actor& other):
+	Object{ other },
+	tag{ other.tag },
+	lifespan{ other.lifespan },
+	transform{ other.transform }
+{
+	for (auto& component : other.m_components) {
+		auto clone = std::unique_ptr<Component>(dynamic_cast<Component*>(component->Clone().release()));
+		AddComponent(std::move(clone));
+	}
+}
+
 void gaia::Actor::Update(float deltaTime) {
 	FACTORY_REGISTER(Actor)
 

@@ -8,10 +8,12 @@ namespace gaia {
 
 
 	public:
-		CLASS_PROTOTYPE(AudioSource)
+		std::string audioClipName;
+	public:
 
-			void Update(float deltatime) override;
+		Class_PROTOTYPE(AudioSource)
 
+		void Update(float deltatime) override;
 		void Play();
 	};
 }

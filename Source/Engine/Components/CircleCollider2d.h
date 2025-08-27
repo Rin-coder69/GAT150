@@ -3,6 +3,8 @@
 namespace gaia {
 	class CircleCollider2d : public ColliderComponent {
 	public:
+
+		Class_PROTOTYPE(CircleCollider2d)
 		void Update(float dt);
 		void Read(const json::value_t& value) override;
 

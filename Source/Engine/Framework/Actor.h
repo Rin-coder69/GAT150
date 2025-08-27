@@ -22,8 +22,12 @@ namespace gaia {
 		Actor() = default;
 		Actor(const Transform& transform) :
 			transform{ transform }
-		{
-		}
+		{}
+		Actor(const Actor& other);
+
+
+		Class_PROTOTYPE(Actor)
+	
 
 		virtual void Update(float dt);
 		virtual void Draw(class Renderer& renderer) const;

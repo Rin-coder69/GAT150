@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 
-namespace gaia{
+namespace gaia {
 	class RigidBody : public Component {
 	public:
 		vec2 velocity{ 0,0 };
@@ -9,9 +9,12 @@ namespace gaia{
 		void Read(const json::value_t& value) override;
 
 	public:
-		void Update(float dt) override;
-			// Update the position based on velocity and apply damping
+		Class_PROTOTYPE(RigidBody)
 
-		};
-	}
+			// Update function to apply physics
+			void Update(float dt) override;
+		// Update the position based on velocity and apply damping
+		void Read(const json::value_t& value) override;
+	};
+}
 	

@@ -8,6 +8,7 @@ public:
 
 public:
 	Rocket() = default;
+	Class_PROTOTYPE(Rocket)
 	Rocket(const gaia::Transform& transform/*, gaia::res_t<gaia::Texture> texture*/ ) :
 		gaia::Actor{transform}
 	{}

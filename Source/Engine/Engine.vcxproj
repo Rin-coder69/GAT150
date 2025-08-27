@@ -200,6 +200,7 @@
     <ClInclude Include="Components\CircleCollider2d.h" />
     <ClInclude Include="Components\ColliderComponents.h" />
     <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Components\RendererComponents.h" />
     <ClInclude Include="Components\RigidBody.h" />
     <ClInclude Include="Components\SpriteRenderer.h" />
