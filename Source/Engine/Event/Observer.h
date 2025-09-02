@@ -1,6 +1,5 @@
 #pragma once
 #include "Event.h"
-#include "EventManager.h"
 namespace gaia {
 	class IObserver {
 	public:

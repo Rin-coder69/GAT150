@@ -1,13 +1,12 @@
 #include "Event/EventManager.h"
-#include "Event.h"
 
 namespace gaia{
 	void EventManager::AddObserver(const Event::id_t& eventId, IObserver* observer) {
-		m_observers[tolower(id)].push_back(observer);
+		m_observers[tolower(eventId)].push_back(observer);
 	}
-	void EventManager::removeObserver(IObserver& observer) {
+	void EventManager::removeObserver(IObserver* observer) {
 		for (auto& [eventId, observers] : m_observers) {
-			observers.remove(&observer);
+			observers.remove(observer);
 		}
 	}
 	void EventManager::notify(const Event& event) {

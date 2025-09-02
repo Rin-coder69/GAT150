@@ -199,9 +199,9 @@
     <ClCompile Include="Render\TextureAnimation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animator.h" />
     <ClInclude Include="Audio\AudioClip.h" />
     <ClInclude Include="Audio\AudioSystem.h" />
-    <ClInclude Include="Components\Animator.h" />
     <ClInclude Include="Components\AudioSource.h" />
     <ClInclude Include="Components\CircleCollider2d.h" />
     <ClInclude Include="Components\ColliderComponents.h" />

@@ -256,9 +256,6 @@
     <ClInclude Include="Render\TextureAnimation.h">
       <Filter>Source\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Animator.h">
-      <Filter>Source\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Event\Event.h">
       <Filter>Events</Filter>
     </ClInclude>
@@ -267,6 +264,9 @@
     </ClInclude>
     <ClInclude Include="Event\Observer.h">
       <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

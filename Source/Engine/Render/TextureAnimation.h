@@ -29,4 +29,5 @@ namespace gaia {
 
 		res_t<Texture> m_texture;
 	};
+}
 	

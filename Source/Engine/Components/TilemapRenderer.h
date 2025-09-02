@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include "RendererComponents.h"
 #include "Physics/Physics.h"
 
@@ -23,3 +23,4 @@ namespace gaia{
 		std::vector<std::unique_ptr<PhysicsBody>> m_physicsBodies;
 	};
 }
+*/
