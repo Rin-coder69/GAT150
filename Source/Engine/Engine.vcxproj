@@ -193,6 +193,7 @@
     <ClCompile Include="Render\Renderer.cpp" />
     <ClCompile Include="Render\Text.cpp" />
     <ClCompile Include="Render\Texture.cpp" />
+    <ClCompile Include="Render\TextureAnimation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\AudioClip.h" />
@@ -223,6 +224,7 @@
     <ClInclude Include="Framework\Scene.h" />
     <ClInclude Include="Input\Inputsystem.h" />
     <ClInclude Include="Math\math.h" />
+    <ClInclude Include="Math\Rect.h" />
     <ClInclude Include="Math\transform.h" />
     <ClInclude Include="Math\vector2.h" />
     <ClInclude Include="Math\vector3.h" />
@@ -233,6 +235,7 @@
     <ClInclude Include="Render\Renderer.h" />
     <ClInclude Include="Render\Text.h" />
     <ClInclude Include="Render\Texture.h" />
+    <ClInclude Include="Render\TextureAnimation.h" />
     <ClInclude Include="Resources\Resource.h" />
     <ClInclude Include="Resources\ResourceManager.h" />
   </ItemGroup>

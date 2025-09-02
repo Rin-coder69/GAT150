@@ -33,6 +33,8 @@ namespace gaia {
 		AudioSystem& GetAudio() const { return *m_audio; }
 		InputSystem& GetInput() const { return *m_input; }
 		ParticleSystem& GetParticleSystem() const { return *m_particleSystem; }
+		Physics& GetPhysics() { return *m_physics; }
+		
 
 		Time& GetTime() { return time; }
 
@@ -46,6 +48,8 @@ namespace gaia {
 		std::unique_ptr<AudioSystem> m_audio;
 		std::unique_ptr<InputSystem> m_input;
 		std::unique_ptr<ParticleSystem> m_particleSystem;
+		std::unique_ptr<Physics> m_physics;
+
 	};
 
 	inline Engine& GetEngine() { return Engine::Instance(); }

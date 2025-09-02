@@ -4,6 +4,7 @@
 #include "Audio/AudioSystem.h"
 #include "Render/particlesystem.h"
 
+
 namespace gaia{
 
 
@@ -23,7 +24,11 @@ namespace gaia{
 		m_audio->Initialize();
 		m_particleSystem = std::make_unique<gaia::ParticleSystem>();
 		m_particleSystem->Initialize(5000);
+		
+		m_physics = std::make_unique<Physics>();
+		m_physics->Initialize();
 		return true;
+
 	}
 
 	void Engine::ShutDown() {
@@ -35,6 +40,7 @@ namespace gaia{
 		m_audio->ShutDown();
 		m_renderer->ShutDown();
 		m_input->ShutDown();
+		m_physics->Shutdown();
 
 		std::cout << "Engine shut down successfully." << std::endl;
 	}
@@ -45,6 +51,7 @@ namespace gaia{
 		m_audio->Update();
 		m_input->Update();
 		m_particleSystem->Update(time.GetDeltaTime());
+		m_physics->Update(time.GetDeltaTime());
 	}
 
 	void Engine::Draw()
