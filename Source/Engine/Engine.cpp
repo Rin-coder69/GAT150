@@ -39,6 +39,7 @@ namespace gaia{
 		std::cout << "Engine shut down successfully." << std::endl;
 	}
 
+
 	void Engine::Update() {
 		time.Tick();
 		m_audio->Update();

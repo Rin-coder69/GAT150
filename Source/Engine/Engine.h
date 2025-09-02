@@ -6,6 +6,7 @@
 #include "Input/InputSystem.h"
 #include "Render/particlesystem.h"
 #include "Resources/ResourceManager.h"
+#include "Physics/Physics.h"
 
 #include <memory>
 
