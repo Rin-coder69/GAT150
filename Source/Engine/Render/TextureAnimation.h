@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 namespace gaia {
 	class Texture;
 
@@ -29,4 +29,4 @@ namespace gaia {
 
 		res_t<Texture> m_texture;
 	};
-	*/
+	

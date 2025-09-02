@@ -5,7 +5,7 @@
 #include <rapidjson/istreamwrapper.h>
 #include <iostream>
 
-namespace gaia ::json
+namespace gaia::json
 {
     bool Load(const std::string& filename, rapidjson::Document& document) {
         // read the file into a string
@@ -15,7 +15,7 @@ namespace gaia ::json
             return false;
         }
 
-		Logger::Info("JSON File read: {}.", buffer);
+        Logger::Info("JSON File read: {}.", buffer);
 
         // convert the string into a json stream
         std::stringstream stream(buffer);
@@ -67,7 +67,7 @@ namespace gaia ::json
         // get the data
         data = value[name.c_str()].GetFloat();
         return true;
-	}
+    }
 
     bool Read(const value_t& value, const std::string& name, std::string& data, bool required) {
         // check if the value has the "<name>" and the correct data type
@@ -78,7 +78,7 @@ namespace gaia ::json
         // get the data
         data = value[name.c_str()].GetString();
         return true;
-	}
+    }
     bool Read(const value_t& value, const std::string& name, vec2& data, bool required) {
         // check if the value has the "<name>" and is an array with 2 elements
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2) {
@@ -124,4 +124,23 @@ namespace gaia ::json
 
         return true;
     }
+    bool Read(const value_t& value, const std::string& name, std::vector<int>& data, bool required)
+    {
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2) {
+            Logger::Error("Could not read Json value (vec2): {}.", name);
+            return false;
+        }
+        auto& array = value[name.c_str()];
+        for (rapidjson::SizeType i = 0; i < array.Size(); i++) {
+            if (!array[i].IsInt()) {
+                Logger::Error("Could not read Json value: {}.", name);
+                return false;
+            }
+            // get the data
+
+            data.push_back(array[i].GetInt());
+        }
+        return true;
+    }
 }
+   

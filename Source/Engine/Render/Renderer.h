@@ -4,6 +4,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_image/SDL_image.h>
 #include <iostream>
+#include "Math/Rect.h"
 
 namespace gaia
 {
@@ -36,6 +37,7 @@ namespace gaia
 		}
 		void DrawTexture(class Texture& texture, float x, float y);
 		void DrawTexture(class Texture* texture, float x, float y, float angle, float scale = 1.0f);
+		void DrawTexture(class Texture& texture, const rect& sourceRect, float x, float y, float angle, float scale = 1);
 
 		void Clear();
 

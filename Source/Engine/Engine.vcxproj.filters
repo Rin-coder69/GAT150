@@ -36,6 +36,9 @@
     <Filter Include="Physics">
       <UniqueIdentifier>{fd43a04b-4bc2-4309-ab52-22da3c98b0d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{4415faa5-212e-48e9-a630-23cf9f18ab05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -115,6 +118,15 @@
     </ClCompile>
     <ClCompile Include="Render\TextureAnimation.cpp">
       <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Animator.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Event\EventManager.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Event\Observer.cpp">
+      <Filter>Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +255,18 @@
     </ClInclude>
     <ClInclude Include="Render\TextureAnimation.h">
       <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Animator.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\Event.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\EventManager.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\Observer.h">
+      <Filter>Events</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

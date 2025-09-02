@@ -7,6 +7,7 @@
 #include "Components/RendererComponents.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/RigidBody.h"
+#include "Components/TilemapRenderer.h"
 
 //audio
 #include "Audio/AudioSystem.h"
@@ -20,6 +21,7 @@
 #include "Render/Text.h"
 #include "Render/Texture.h"
 #include "Render/ParticleSystem.h"
+#include "Render/Tilemap.h"
 
 //Framework
 #include "Framework/Object.h"
