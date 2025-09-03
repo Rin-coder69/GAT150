@@ -45,3 +45,7 @@
 #include <memory>
 #include "Core/Factory.h"
 #include "Components/CircleCollider2d.h"
+
+
+#include "Physics/Physics.h"
+#include "Physics/PhysicsBody.h"

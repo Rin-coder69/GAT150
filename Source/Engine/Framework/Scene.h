@@ -24,7 +24,7 @@ namespace gaia {
 		void Update(float deltaTime);
 		void Draw(class Renderer& renderer);
 
-		void AddActor(std::unique_ptr<Actor> actor);
+		void AddActor(std::unique_ptr<Actor> actor, bool start = true);
 		void RemoveAllActors(bool force = false);
 
 		void Read(const json::value_t& value) override;

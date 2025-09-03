@@ -28,9 +28,15 @@ namespace gaia {
 
 
 		Class_PROTOTYPE(Actor)
+
+
+		virtual void Start();
+		virtual void Destroyed();
+		virtual void Update(float dt);
+		//virtual void Draw(class Renderer& renderer);
 	
 
-		virtual void Update(float dt);
+		
 		virtual void Draw(class Renderer& renderer) const;
 		void Read(const json::value_t& value) override;
 

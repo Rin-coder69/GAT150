@@ -28,3 +28,7 @@
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
 #include "Framework/Game.h"
+
+//Event
+#include "Event/Observer.h"
+#include "Event/EventManager.h"

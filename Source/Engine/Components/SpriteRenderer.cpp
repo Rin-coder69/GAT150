@@ -1,12 +1,18 @@
 #include "SpriteRenderer.h"
 #include "Render/Renderer.h"
 #include "EnginePCH.h"
+#include "Engine.h"
 
 
 namespace gaia {
 	FACTORY_REGISTER(SpriteRenderer)
 
-		void SpriteRenderer::Update(float dt)
+		void SpriteRenderer::Start()
+	{
+		texture = Resources().Get<Texture>(textureName,GetEngine().GetRenderer());
+	}
+
+	void SpriteRenderer::Update(float dt)
 	{
 	}
 

@@ -17,7 +17,16 @@ namespace gaia {
 			AddComponent(std::move(clone));
 		}
 	}
-
+	void Actor::Start() {
+		for (auto& component : m_components) {
+			if (component->active)	component->Start();
+		}
+	}
+	void Actor::Destroyed() {
+		for (auto& component : m_components) {
+			if (component->active)	component->Destroyed();
+		}
+	}
 
 	void Actor::Update(float deltaTime) {
 
@@ -85,5 +94,7 @@ namespace gaia {
 		{
 			Logger::Debug("Actor has no components");
 		}
+		
+	
 	}
 }

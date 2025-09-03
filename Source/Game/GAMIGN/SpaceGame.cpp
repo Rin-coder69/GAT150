@@ -27,9 +27,12 @@ FMOD::Channel* m_musicChannel = nullptr;
 
 bool SpaceGame::Initialize()
 {
+    
+
     m_scene = std::make_unique<gaia::Scene>(this);
 
     gaia::json::document_t document;
+	m_scene = std::make_unique<gaia::Scene>(this);
     m_scene->Load("scene.json");
     //m_scene->
 		// Initialize fonts

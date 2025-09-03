@@ -58,9 +58,9 @@ namespace gaia {
 	/// Adds an actor to the scene by transferring ownership of the actor to the scene.
 	/// </summary>
 	/// <param name="actor">A unique pointer to the actor to be added. Ownership of the actor is transferred to the scene.</param>
-	void Scene::AddActor(std::unique_ptr<Actor> actor) {
+	void Scene::AddActor(std::unique_ptr<Actor> actor, bool start) {
 		actor->scene = this;
-
+		if (start) actor->Start();
 		m_actors.push_back(std::move(actor));
 	}
 	void Scene::RemoveAllActors(bool force)

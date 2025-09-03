@@ -5,11 +5,16 @@
 #include "../GamePCH.h"
 FACTORY_REGISTER(Enemy)
 
+void Enemy::Start()
+{
+	m_rigidBody = owner->GetComponent<gaia::RigidBody>();
+}
+
 void Enemy::Update(float deltaTime)
 {
-	/*
+	
 	bool playerSeen = false;
-	Actor* player = owner->scene->GetActorByName<Actor>("player");
+	auto player = owner->scene->GetActorByName<gaia::Actor>("player");
 	if (player) {
 		gaia::vec2 direction{ 0,0 };
 		direction = player->transform.position - owner->transform.position;
@@ -33,25 +38,23 @@ void Enemy::Update(float deltaTime)
 
 		//std::shared_ptr<gaia::Model> model = std::make_shared<gaia::Model>(GameData::shipPoints, gaia::vec3{ 0.0f,1.0f,0.0f });
 		gaia::Transform transform{ owner->transform.position, owner->transform.rotation, 2.0f };
-		auto rocket = std::make_unique<Actor>(transform); //gaia::Resources().Get<gaia::Texture>("textures/blue_01.png", gaia::GetEngine().GetRenderer()));
-		rocket->speed = 2.0f;
+		auto rocket = gaia::Instantiate("rocket",transform); //gaia::Resources().Get<gaia::Texture>("textures/blue_01.png", gaia::GetEngine().GetRenderer()));
+		//rocket->speed = 2.0f;
 		rocket->lifespan = 1.5f;
 		rocket->name = "enemy";
 		rocket->tag = "enemy";
 		//components
 		auto spriteRender = std::make_unique<gaia::SpriteRenderer>();
-		spriteRender->textureName = "textures/blue_01.png";
+		spriteRender->textureName = "textures/slime.png";
 		rocket -> AddComponent(std::move(spriteRender));
 
 		auto rb = std::make_unique<gaia::RigidBody>();
 	
 		player->AddComponent(std::move(rb));
 
-		scene->AddActor(std::move(rocket));
+		owner->scene->AddActor(std::move(rocket));
 	}
-
-	Actor::Update(deltaTime);
-	*/
+	
 }
 
 void Enemy::OnCollision(gaia::Actor* other)

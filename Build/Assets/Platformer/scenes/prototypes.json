@@ -1,0 +1,66 @@
+{
+  "prototypes": [
+    {
+      "name": "player",
+      "tag": "Player",
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "player",
+          "speed": 1500.0,
+          "rotationspeed": 90.0,
+          "fireTime": 0.2
+        },
+        {
+          "type": "SpriteRenderer",
+          "texture_name": "textures/Wilnas.png"
+        },
+        {
+          "type": "RigidBody",
+          "damping": 1.5,
+          "velocity": [ 0, 0 ]
+        },
+        {
+          "type": "CircleCollider2d",
+          "radius": 60,
+          "height": 50
+        }
+      ]
+    },
+    {
+      "name": "enemy",
+      "tag": "Enemy",
+      "transform": {
+        "position": [ 840, 612 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "enemy",
+          "speed": 1500.0,
+          "rotationspeed": 90.0,
+          "fireTime": 0.2
+        },
+        {
+          "type": "SpriteRenderer",
+          "texture_name": "textures/slime.png"
+        },
+        {
+          "type": "RigidBody",
+          "damping": 1.5,
+          "velocity": [ 0, 0 ]
+        },
+        {
+          "type": "CircleCollider2D",
+          "radius": 60,
+          "height": 50
+        }
+      ]
+    }
+  ]
+}

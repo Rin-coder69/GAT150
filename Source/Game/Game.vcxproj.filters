@@ -21,6 +21,9 @@
       <Filter>GAMIGN</Filter>
     </ClCompile>
     <ClCompile Include="GamePCH.cpp" />
+    <ClCompile Include="Platformer\PlatformerGame.cpp">
+      <Filter>Platformer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAMIGN">
@@ -28,6 +31,15 @@
     </Filter>
     <Filter Include="Assets">
       <UniqueIdentifier>{e231b6ca-c7b2-4266-a3b9-cd64b9fea399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\space">
+      <UniqueIdentifier>{74da3bc6-4ecd-4069-9cf6-00e08eefec6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Platformer">
+      <UniqueIdentifier>{9b80185f-ca4e-487c-a80a-d01e86705df1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platformer">
+      <UniqueIdentifier>{c3b4a1ab-823d-4963-a4f1-cdb95c1ddefb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -50,13 +62,22 @@
       <Filter>GAMIGN</Filter>
     </ClInclude>
     <ClInclude Include="GamePCH.h" />
+    <ClInclude Include="Platformer\PlatformerGame.h">
+      <Filter>Platformer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Build\Assets\scene.json">
-      <Filter>Assets</Filter>
+      <Filter>Assets\space</Filter>
     </None>
     <None Include="..\..\..\map.json">
-      <Filter>Assets</Filter>
+      <Filter>Assets\space</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Platformer\scenes\prototypes.json">
+      <Filter>Assets\Platformer</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Platformer\scenes\level.json">
+      <Filter>Assets\Platformer</Filter>
     </None>
   </ItemGroup>
 </Project>
