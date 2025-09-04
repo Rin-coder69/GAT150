@@ -45,8 +45,8 @@
           "jump": 500
         },
         {
-          "type": "SpriteRenderer",
-          "texture_name": "textures/enemy.png"
+          "type": "SpriteRenderer",        
+            "texture_name": "textures/enemy.png"
         },
         {
           "type": "RigidBody",

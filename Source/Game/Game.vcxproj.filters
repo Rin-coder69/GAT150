@@ -30,6 +30,9 @@
     <ClCompile Include="Platformer\EnemyController.cpp">
       <Filter>Platformer</Filter>
     </ClCompile>
+    <ClCompile Include="Platformer\plush.cpp">
+      <Filter>Platformer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAMIGN">
@@ -75,6 +78,9 @@
       <Filter>Platformer</Filter>
     </ClInclude>
     <ClInclude Include="Platformer\EnemyController.h">
+      <Filter>Platformer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platformer\plush.h">
       <Filter>Platformer</Filter>
     </ClInclude>
   </ItemGroup>

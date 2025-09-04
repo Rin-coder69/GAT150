@@ -22,9 +22,12 @@ namespace gaia {
 		transform.rotation = owner->transform.rotation;
 
 		PhysicsBody::PhysicsBodyDef bodyDef;
+		bodyDef.isDynamic = false;
 
 		// iterate through layers
 		for (auto layer : m_tilemap->GetLayers()) {
+
+			if (!layer.hasCollision) continue;
 
 			// get layer data (layout)
 			for (int i = 0; i < layer.data.size(); i++) {
@@ -38,6 +41,7 @@ namespace gaia {
 				vec2 size = vec2{ source.w,source.h };
 
 				auto physicsBody = std::make_unique<PhysicsBody>( transform,size, bodyDef,GetEngine().GetPhysics());
+				m_physicsBodies.push_back(std::move(physicsBody));
 			}
 		}
 	}

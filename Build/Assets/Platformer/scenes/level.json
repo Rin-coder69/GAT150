@@ -32,43 +32,21 @@
       ]
     },
     {
-
       "name": "ground_tilemap",
-
       "tag": "tilemap",
-
       "persistent": true,
-
       "transform": {
-
-        "position": [
-
-          400,
-
-          325
-
-        ],
-
+        "position": [ 0, 0 ],
         "rotation": 0,
-
-        "scale":1
-
+        "scale": 1.75
       },
-
       "components": [
-
         {
-
           "type": "TilemapRenderer",
-
-          "tilemap_name": "TileMaps/map.json"
-
+          "tilemap_name": "TileMaps/map1.json"
         }
-
       ]
-
     },
-
     {
       "tag": "ground",
       "persistent": true,
@@ -101,6 +79,10 @@
         {
           "type": "SpriteRenderer",
           "texture_name": "textures/crate02.png"
+        },
+        {
+          "type": "SpriteRenderer",
+          "texture_name": "textures/Wamdus.png"
         },
         {
           "type": "RigidBody",

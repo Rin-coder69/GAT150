@@ -24,7 +24,7 @@ void PlatformerGame::Update(float dt) {
 		break;
 	case PlatformerGame::GameState::StartRound:
 		SpawnPlayer();
-		SpawnEnemy();
+	
 		{
 			auto enemy = gaia::Instantiate("bat");
 			//player->transform.position = gaia::vec2{ gaia::random::getReal(0.0f,1080.0f), gaia::random::getReal(0.0f,100.0f)};
