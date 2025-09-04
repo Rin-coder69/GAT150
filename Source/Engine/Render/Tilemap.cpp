@@ -75,6 +75,7 @@ namespace gaia {
 		int tileX = tileIndex % layer.width;
 		int tileY = tileIndex / layer.width;
 
-		return vec2{(float)tileX,(float)tileY};
+	
+		return vec2{(float)tileX * tilewidth,(float)tileY * tileheight};
 	}
 }
