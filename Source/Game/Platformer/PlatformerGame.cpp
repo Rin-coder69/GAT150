@@ -4,7 +4,7 @@ bool PlatformerGame::Initialize() {
 	OBSERVER_ADD(player_dead);
 	OBSERVER_ADD(add_points);
 	m_scene = std::make_unique<gaia::Scene>(this);
-	m_scene->Load("prototypes.json");
+	m_scene->Load("scenes/prototypes.json");
 	m_scene->Load("scenes/level.json");
 	return true;
 
@@ -16,12 +16,16 @@ void PlatformerGame::ShutDown() {
 void PlatformerGame::Update(float dt) {
 	switch (m_gameState) {
 	case PlatformerGame::GameState::Initialize:
+		m_gameState = GameState::StartRound;
 		break;
 	case PlatformerGame::GameState::Title:
 		break;
 	case PlatformerGame::GameState::StartGame:
 		break;
 	case PlatformerGame::GameState::StartRound:
+		SpawnPlayer();
+		SpawnEnemy();
+		m_gameState = GameState::Game;
 		break;
 	case PlatformerGame::GameState::Game:
 		break;
@@ -43,6 +47,16 @@ void PlatformerGame::OnNotify(const gaia::Event& event) {
 
 }
 
-void PlatformerGame::SpawnEnemy() {
+void PlatformerGame::SpawnPlayer()
+{
+	auto player = gaia::Instantiate("platformplayer");
+	//player->transform.position = gaia::vec2{ gaia::random::getReal(0.0f,1080.0f), gaia::random::getReal(0.0f,100.0f)};
+	m_scene->AddActor(std::move(player));
+	
+}
 
+void PlatformerGame::SpawnEnemy() {
+	auto enemy = gaia::Instantiate("platformplayer");
+	//player->transform.position = gaia::vec2{ gaia::random::getReal(0.0f,1080.0f), gaia::random::getReal(0.0f,100.0f)};
+	m_scene->AddActor(std::move(enemy));
 	}

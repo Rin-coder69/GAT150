@@ -196,7 +196,9 @@
     <ClCompile Include="GAMIGN\Rocket.cpp" />
     <ClCompile Include="GAMIGN\SpaceGame.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Platformer\EnemyController.cpp" />
     <ClCompile Include="Platformer\PlatformerGame.cpp" />
+    <ClCompile Include="Platformer\PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -214,7 +216,9 @@
     <ClInclude Include="GAMIGN\Player.h" />
     <ClInclude Include="GAMIGN\Rocket.h" />
     <ClInclude Include="GAMIGN\SpaceGame.h" />
+    <ClInclude Include="Platformer\EnemyController.h" />
     <ClInclude Include="Platformer\PlatformerGame.h" />
+    <ClInclude Include="Platformer\PlayerController.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\map.json" />

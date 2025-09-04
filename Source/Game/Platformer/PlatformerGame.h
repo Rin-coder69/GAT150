@@ -25,8 +25,11 @@ public:
 	void Update(float dt) override;
 	void Draw(class gaia::Renderer& renderer) override;
 	void OnNotify(const gaia::Event& event) override;
-	void SpawnEnemy();
+	
 	void OnPlayerDeath();
+private:
+	void SpawnPlayer();
+	void SpawnEnemy();
 private:
 	friend class Text;
 	GameState m_gameState = GameState::Initialize;

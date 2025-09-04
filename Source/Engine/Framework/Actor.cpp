@@ -77,7 +77,9 @@ namespace gaia {
 		JSON_READ(value, lifespan);
 		JSON_READ(value, persistent);
 
-		if (JSON_HAS(value, transform)) transform.Read(JSON_GET(value, transform));
+		if (JSON_HAS(value, transform)) {
+			transform.Read(JSON_GET(value, transform));
+		}
 
 		//read component
 		if (JSON_HAS(value, components)) {
@@ -94,7 +96,7 @@ namespace gaia {
 		{
 			Logger::Debug("Actor has no components");
 		}
-		
-	
+
+
 	}
 }

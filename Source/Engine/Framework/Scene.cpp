@@ -75,6 +75,23 @@ namespace gaia {
 		}
 	}
 
+	bool Scene::Load(const std::string& filename)
+	{
+		gaia::json::document_t document;
+		if (!gaia::json::Load(filename, document)) {
+			Logger::Error("Failed to load scene file: {}", filename);
+			return false;
+		}
+
+		//create scene
+		Read(document);
+		//start all actors
+		for (auto& actor : m_actors) {
+			//start actors
+		}
+		return true;
+	}
+
 
 	void Scene::Read(const json::value_t& value) {
 		if (JSON_HAS(value, prototypes)) {
@@ -96,19 +113,7 @@ namespace gaia {
 			}
 		}
 	}
-	bool Scene::Load(const std::string& filename)
-	{
-		json::document_t document;
-		if (!json::Load(filename, document)) {
-			Logger::Error("Failed to load scene file: {}", filename);
-			return false;
-		}
-		Read(document);
-		for (auto& actor : m_actors) {
-			//start actors
-		}
-		return true;
-	}
+
 }
 
 

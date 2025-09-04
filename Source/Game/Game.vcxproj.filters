@@ -24,6 +24,12 @@
     <ClCompile Include="Platformer\PlatformerGame.cpp">
       <Filter>Platformer</Filter>
     </ClCompile>
+    <ClCompile Include="Platformer\PlayerController.cpp">
+      <Filter>Platformer</Filter>
+    </ClCompile>
+    <ClCompile Include="Platformer\EnemyController.cpp">
+      <Filter>Assets\Platformer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAMIGN">
@@ -64,6 +70,12 @@
     <ClInclude Include="GamePCH.h" />
     <ClInclude Include="Platformer\PlatformerGame.h">
       <Filter>Platformer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platformer\PlayerController.h">
+      <Filter>Platformer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platformer\EnemyController.h">
+      <Filter>Assets\Platformer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
