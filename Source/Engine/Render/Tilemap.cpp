@@ -1,5 +1,5 @@
 #include "Tilemap.h"
-
+#include "Core/StringHelper.h"
 namespace gaia {
 	bool Tilemap::Load(const std::string& filename, class Renderer& renderer) {
 		// load json
@@ -28,7 +28,7 @@ namespace gaia {
 						JSON_READ(propertyValue, name);
 
 						// check if property name is TextureName
-						if (equalsIgnoreCase(name, "TextureName")) {
+						if ((gaia::tolower(name) =="texturename")) {
 							// read texture name value (texture name)
 							std::string value;
 							JSON_READ(propertyValue, value);
@@ -38,6 +38,9 @@ namespace gaia {
 								Logger::Warning("Could not load Tilemap texture {}", value);
 								return false;
 							}
+						}
+						else if ((name == gaia::tolower("TextureName"))) {
+							JSON_READ_NAME(propertyValue,"value", layer.hasCollision);
 						}
 					}
 				}
@@ -70,7 +73,7 @@ namespace gaia {
 
 	vec2 Tilemap::GetPosition(const Layer& layer, int tileIndex) {
 		int tileX = tileIndex % layer.width;
-		int tileY = titleIndex / layer.width;
+		int tileY = tileIndex / layer.width;
 
 		return vec2{(float)tileX,(float)tileY};
 	}

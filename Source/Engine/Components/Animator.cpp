@@ -37,7 +37,7 @@ namespace gaia {
 		if (m_pause || m_animations.empty() || !m_currentAnim.textureAnim) return;
 
 		//update frame timer
-		m_frameTimer += dt * speedMultiplier;
+		m_frameTimer -= dt * speedMultiplier;
 		if (m_frameTimer <= 0) {
 			m_frameTimer = 1.0f / m_currentAnim.textureAnim->GetFPS();
 			frame++;
@@ -85,9 +85,9 @@ namespace gaia {
 
 		JSON_READ(value, frame);
 
-		if (JSON_HAS(value, m_animations) && JSON_GET(value, m_animations).IsArray()) {
+		if (JSON_HAS(value, animations) && JSON_GET(value, animations).IsArray()) {
 			// safe to access m_animations
-			for (auto& animValue : JSON_GET(value, m_animations).GetArray()) {
+			for (auto& animValue : JSON_GET(value, animations).GetArray()) {
 				std::string name;
 				std::string textureAnimName;
 				JSON_READ_NAME(animValue, "name", name);

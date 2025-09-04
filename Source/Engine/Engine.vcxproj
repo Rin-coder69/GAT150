@@ -171,6 +171,7 @@
     <ClCompile Include="Components\MeshRenderer.cpp" />
     <ClCompile Include="Components\RigidBody.cpp" />
     <ClCompile Include="Components\SpriteRenderer.cpp" />
+    <ClCompile Include="Components\TilemapRenderer.cpp" />
     <ClCompile Include="Core\File.cpp" />
     <ClCompile Include="Core\Json.cpp" />
     <ClCompile Include="core\Time.cpp" />
@@ -198,6 +199,7 @@
     <ClCompile Include="Render\Text.cpp" />
     <ClCompile Include="Render\Texture.cpp" />
     <ClCompile Include="Render\TextureAnimation.cpp" />
+    <ClCompile Include="Render\Tilemap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\AudioClip.h" />
@@ -211,6 +213,7 @@
     <ClInclude Include="Components\RendererComponents.h" />
     <ClInclude Include="Components\RigidBody.h" />
     <ClInclude Include="Components\SpriteRenderer.h" />
+    <ClInclude Include="Components\TilemapRenderer.h" />
     <ClInclude Include="Core\Factory.h" />
     <ClInclude Include="core\File.h" />
     <ClInclude Include="Core\Json.h" />
@@ -245,6 +248,7 @@
     <ClInclude Include="Render\Text.h" />
     <ClInclude Include="Render\Texture.h" />
     <ClInclude Include="Render\TextureAnimation.h" />
+    <ClInclude Include="Render\Tilemap.h" />
     <ClInclude Include="Resources\Resource.h" />
     <ClInclude Include="Resources\ResourceManager.h" />
   </ItemGroup>

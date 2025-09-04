@@ -28,7 +28,7 @@
       <Filter>Platformer</Filter>
     </ClCompile>
     <ClCompile Include="Platformer\EnemyController.cpp">
-      <Filter>Assets\Platformer</Filter>
+      <Filter>Platformer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,20 +75,20 @@
       <Filter>Platformer</Filter>
     </ClInclude>
     <ClInclude Include="Platformer\EnemyController.h">
-      <Filter>Assets\Platformer</Filter>
+      <Filter>Platformer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Build\Assets\scene.json">
       <Filter>Assets\space</Filter>
     </None>
-    <None Include="..\..\..\map.json">
-      <Filter>Assets\space</Filter>
-    </None>
     <None Include="..\..\Build\Assets\Platformer\scenes\prototypes.json">
       <Filter>Assets\Platformer</Filter>
     </None>
     <None Include="..\..\Build\Assets\Platformer\scenes\level.json">
+      <Filter>Assets\Platformer</Filter>
+    </None>
+    <None Include="..\..\..\map.json">
       <Filter>Assets\Platformer</Filter>
     </None>
   </ItemGroup>

@@ -126,7 +126,7 @@ namespace gaia::json
     }
     bool Read(const value_t& value, const std::string& name, std::vector<int>& data, bool required)
     {
-        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2) {
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray()) {
             Logger::Error("Could not read Json value (vec2): {}.", name);
             return false;
         }
