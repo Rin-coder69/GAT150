@@ -1,7 +1,7 @@
 #include "PlayerController.h"
 #include "../GamePCH.h"
 
-#define FACTORY_REGISTER(PlayerController);
+ FACTORY_REGISTER(PlayerController);
 
 	void PlayerController::Start() {
 		RigidBody = owner->GetComponent<gaia::RigidBody>();

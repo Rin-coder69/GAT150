@@ -1,7 +1,7 @@
 #include "EnemyController.h"
 #include "../GamePCH.h"
 
-#define FACTORY_REGISTER(EnemyController);
+ FACTORY_REGISTER(EnemyController);
 
 void EnemyController::Start() {
 	RigidBody = owner->GetComponent<gaia::RigidBody>();

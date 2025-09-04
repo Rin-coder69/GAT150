@@ -56,7 +56,7 @@ void PlatformerGame::SpawnPlayer()
 }
 
 void PlatformerGame::SpawnEnemy() {
-	auto enemy = gaia::Instantiate("platformplayer");
+	auto enemy = gaia::Instantiate("platformenemy");
 	//player->transform.position = gaia::vec2{ gaia::random::getReal(0.0f,1080.0f), gaia::random::getReal(0.0f,100.0f)};
 	m_scene->AddActor(std::move(enemy));
 	}

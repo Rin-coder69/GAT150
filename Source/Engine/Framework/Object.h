@@ -3,7 +3,7 @@
 #include "Core/serializable.h"
 
 #define Class_PROTOTYPE(classname) virtual std::unique_ptr<Object> Clone() { return std::make_unique<classname>(*this); }
-\
+
 
 namespace gaia {
 	class Object : public Serializable {
