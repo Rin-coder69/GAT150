@@ -25,6 +25,7 @@ void PlatformerGame::Update(float dt) {
 	case PlatformerGame::GameState::StartRound:
 		SpawnPlayer();
 		SpawnEnemy();
+		
 		m_gameState = GameState::Game;
 		break;
 	case PlatformerGame::GameState::Game:
@@ -52,6 +53,9 @@ void PlatformerGame::SpawnPlayer()
 	auto player = gaia::Instantiate("platformplayer");
 	//player->transform.position = gaia::vec2{ gaia::random::getReal(0.0f,1080.0f), gaia::random::getReal(0.0f,100.0f)};
 	m_scene->AddActor(std::move(player));
+
+	/*auto bat = gaia::Instantiate("bat");
+	m_scene->AddActor(std::move(bat));*/
 	
 }
 

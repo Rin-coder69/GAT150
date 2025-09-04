@@ -119,9 +119,6 @@
     <ClCompile Include="Render\TextureAnimation.cpp">
       <Filter>Source\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Animator.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Event\EventManager.cpp">
       <Filter>Source\Events</Filter>
     </ClCompile>
@@ -130,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Physics\PhysicsBody.cpp">
       <Filter>Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Animator.cpp">
+      <Filter>Source\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -268,11 +268,11 @@
     <ClInclude Include="Event\Observer.h">
       <Filter>Source\Events</Filter>
     </ClInclude>
-    <ClInclude Include="Animator.h">
-      <Filter>Source\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Physics\PhysicsBody.h">
       <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Animator.h">
+      <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

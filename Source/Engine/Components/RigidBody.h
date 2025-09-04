@@ -25,7 +25,10 @@ namespace gaia {
 		void ApplyForce(const vec2& force);
 		void ApplyTorque(float radians);
 
+
+		gaia::vec2 GetVelocity() const { return velocity; }
 		void SetVelocity(const vec2& velocity);
+	
 
 	private:
 		std::unique_ptr<PhysicsBody> m_physicsBody;

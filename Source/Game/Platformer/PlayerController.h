@@ -12,7 +12,7 @@ public:
 	float fireTime = 0.2f;
 	float fireTimer = 0.0f;
 
-	gaia::RigidBody* RigidBody{ nullptr };
+	gaia::RigidBody* rigidBody{ nullptr };
 
 public:
 	PlayerController() = default;

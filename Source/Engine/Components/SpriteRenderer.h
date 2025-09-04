@@ -5,6 +5,7 @@ namespace gaia {
 	class SpriteRenderer : public RendererComponent {
 	public:
 		std::string textureName;
+		rect textureRect;
 		res_t<Texture> texture;
 
 	public:
