@@ -6,6 +6,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 #include "Event/Observer.h"
 #include "Event/EventManager.h"
+#include <fmod.hpp>
 class PlatformerGame : public gaia::Game, public:: gaia::IObserver {
 public:
 	enum class GameState {
@@ -25,11 +26,19 @@ public:
 	void Update(float dt) override;
 	void Draw(class gaia::Renderer& renderer) override;
 	void OnNotify(const gaia::Event& event) override;
+
+	void AddPoints(int points) { m_score += points; }
 	
 	void OnPlayerDeath();
+
+private:
+	FMOD::System* m_audioSystem = nullptr;
+	FMOD::Sound* m_music = nullptr;
+	FMOD::Channel* m_musicChannel = nullptr;
 private:
 	void SpawnPlayer();
 	void SpawnEnemy();
+	void SpawnPlush();
 private:
 	friend class Text;
 	GameState m_gameState = GameState::Initialize;

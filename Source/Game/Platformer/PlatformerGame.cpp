@@ -6,12 +6,17 @@ bool PlatformerGame::Initialize() {
 	m_scene = std::make_unique<gaia::Scene>(this);
 	m_scene->Load("scenes/prototypes.json");
 	m_scene->Load("scenes/level.json");
+
+	FMOD::System_Create(&m_audioSystem);
+	m_audioSystem->init(32, FMOD_INIT_NORMAL, nullptr);
+
+	m_audioSystem->createSound("Assets/DancingWind.wav", FMOD_LOOP_NORMAL, 0, &m_music);
+
+	m_audioSystem->playSound(m_music, nullptr, false, &m_musicChannel);
 	return true;
 
 }
-void PlatformerGame::ShutDown() {
-	//
-}
+
 
 void PlatformerGame::Update(float dt) {
 	switch (m_gameState) {
@@ -24,7 +29,8 @@ void PlatformerGame::Update(float dt) {
 		break;
 	case PlatformerGame::GameState::StartRound:
 		SpawnPlayer();
-	
+		SpawnPlush();
+
 		{
 			auto enemy = gaia::Instantiate("bat");
 			//player->transform.position = gaia::vec2{ gaia::random::getReal(0.0f,1080.0f), gaia::random::getReal(0.0f,100.0f)};
@@ -44,9 +50,10 @@ void PlatformerGame::Update(float dt) {
 		break;
 	}
 	m_scene->Update(gaia::GetEngine().GetTime().GetDeltaTime());
+	if (m_audioSystem)m_audioSystem->update();
 
 }
-void PlatformerGame::Draw(class gaia::Renderer& renderer){
+void PlatformerGame::Draw(class gaia::Renderer& renderer) {
 	m_scene->Draw(renderer);
 	gaia::GetEngine().GetParticleSystem().Draw(renderer);
 }
@@ -62,13 +69,28 @@ void PlatformerGame::SpawnPlayer()
 
 	/*auto bat = gaia::Instantiate("bat");
 	m_scene->AddActor(std::move(bat));*/
-	
+
 }
 
 void PlatformerGame::SpawnEnemy() {
 	auto enemy = gaia::Instantiate("platformenemy");
 	//player->transform.position = gaia::vec2{ gaia::random::getReal(0.0f,1080.0f), gaia::random::getReal(0.0f,100.0f)};
 	m_scene->AddActor(std::move(enemy));
+}
+void PlatformerGame::SpawnPlush() {
+	auto plush = gaia::Instantiate("plush");
+	//player->transform.position = gaia::vec2{ gaia::random::getReal(0.0f,1080.0f), gaia::random::getReal(0.0f,100.0f)};
+	m_scene->AddActor(std::move(plush));
+}
+
+void PlatformerGame::ShutDown() {
+	if (m_music) {
+		m_music->release();
+		m_music = nullptr;
 	}
-
-
+	if (m_audioSystem) {
+		m_audioSystem->close();
+		m_audioSystem->release();
+		m_audioSystem = nullptr;
+	}
+}

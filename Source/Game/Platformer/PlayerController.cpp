@@ -44,6 +44,10 @@
 
 	void PlayerController::OnCollision(class gaia::Actor * other)
 	{
+        if (owner->tag != other->tag) {
+            owner->destroyed = true;
+            //owner->scene->GetGame()->AddPoints(100);
+        }
 	}
 
 	void PlayerController::Read(const gaia::json::value_t & value)

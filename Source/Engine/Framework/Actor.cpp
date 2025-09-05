@@ -23,6 +23,7 @@ namespace gaia {
 		}
 	}
 	void Actor::Destroyed() {
+		destroyed = true;
 		for (auto& component : m_components) {
 			if (component->active)	component->Destroyed();
 		}
